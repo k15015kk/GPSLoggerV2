@@ -1,0 +1,626 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50027C9EFB4009537BD /* AppDelegate.swift */; };
+		F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50227C9EFB4009537BD /* SceneDelegate.swift */; };
+		F958C50527C9EFB4009537BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50427C9EFB4009537BD /* ViewController.swift */; };
+		F958C50827C9EFB4009537BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F958C50627C9EFB4009537BD /* Main.storyboard */; };
+		F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F958C50927C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld */; };
+		F958C50D27C9EFBC009537BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F958C50C27C9EFBC009537BD /* Assets.xcassets */; };
+		F958C51027C9EFBC009537BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F958C50E27C9EFBC009537BD /* LaunchScreen.storyboard */; };
+		F958C51B27C9EFBD009537BD /* GPSLoggerV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C51A27C9EFBD009537BD /* GPSLoggerV2Tests.swift */; };
+		F958C52527C9EFBD009537BD /* GPSLoggerV2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C52427C9EFBD009537BD /* GPSLoggerV2UITests.swift */; };
+		F958C52727C9EFBD009537BD /* GPSLoggerV2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C52627C9EFBD009537BD /* GPSLoggerV2UITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F958C51727C9EFBD009537BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F958C4F527C9EFB4009537BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F958C4FC27C9EFB4009537BD;
+			remoteInfo = GPSLoggerV2;
+		};
+		F958C52127C9EFBD009537BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F958C4F527C9EFB4009537BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F958C4FC27C9EFB4009537BD;
+			remoteInfo = GPSLoggerV2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLoggerV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F958C50027C9EFB4009537BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F958C50227C9EFB4009537BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F958C50427C9EFB4009537BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F958C50727C9EFB4009537BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F958C50A27C9EFB4009537BD /* GPSLoggerV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSLoggerV2.xcdatamodel; sourceTree = "<group>"; };
+		F958C50C27C9EFBC009537BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F958C50F27C9EFBC009537BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F958C51127C9EFBC009537BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F958C51627C9EFBD009537BD /* GPSLoggerV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSLoggerV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F958C51A27C9EFBD009537BD /* GPSLoggerV2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSLoggerV2Tests.swift; sourceTree = "<group>"; };
+		F958C52027C9EFBD009537BD /* GPSLoggerV2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSLoggerV2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F958C52427C9EFBD009537BD /* GPSLoggerV2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSLoggerV2UITests.swift; sourceTree = "<group>"; };
+		F958C52627C9EFBD009537BD /* GPSLoggerV2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSLoggerV2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F958C4FA27C9EFB4009537BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F958C51327C9EFBD009537BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F958C51D27C9EFBD009537BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F958C4F427C9EFB4009537BD = {
+			isa = PBXGroup;
+			children = (
+				F958C4FF27C9EFB4009537BD /* GPSLoggerV2 */,
+				F958C51927C9EFBD009537BD /* GPSLoggerV2Tests */,
+				F958C52327C9EFBD009537BD /* GPSLoggerV2UITests */,
+				F958C4FE27C9EFB4009537BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F958C4FE27C9EFB4009537BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */,
+				F958C51627C9EFBD009537BD /* GPSLoggerV2Tests.xctest */,
+				F958C52027C9EFBD009537BD /* GPSLoggerV2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F958C4FF27C9EFB4009537BD /* GPSLoggerV2 */ = {
+			isa = PBXGroup;
+			children = (
+				F958C50027C9EFB4009537BD /* AppDelegate.swift */,
+				F958C50227C9EFB4009537BD /* SceneDelegate.swift */,
+				F958C50427C9EFB4009537BD /* ViewController.swift */,
+				F958C50627C9EFB4009537BD /* Main.storyboard */,
+				F958C50C27C9EFBC009537BD /* Assets.xcassets */,
+				F958C50E27C9EFBC009537BD /* LaunchScreen.storyboard */,
+				F958C51127C9EFBC009537BD /* Info.plist */,
+				F958C50927C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld */,
+			);
+			path = GPSLoggerV2;
+			sourceTree = "<group>";
+		};
+		F958C51927C9EFBD009537BD /* GPSLoggerV2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F958C51A27C9EFBD009537BD /* GPSLoggerV2Tests.swift */,
+			);
+			path = GPSLoggerV2Tests;
+			sourceTree = "<group>";
+		};
+		F958C52327C9EFBD009537BD /* GPSLoggerV2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				F958C52427C9EFBD009537BD /* GPSLoggerV2UITests.swift */,
+				F958C52627C9EFBD009537BD /* GPSLoggerV2UITestsLaunchTests.swift */,
+			);
+			path = GPSLoggerV2UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F958C4FC27C9EFB4009537BD /* GPSLoggerV2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F958C52A27C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2" */;
+			buildPhases = (
+				F958C4F927C9EFB4009537BD /* Sources */,
+				F958C4FA27C9EFB4009537BD /* Frameworks */,
+				F958C4FB27C9EFB4009537BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GPSLoggerV2;
+			productName = GPSLoggerV2;
+			productReference = F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F958C51527C9EFBD009537BD /* GPSLoggerV2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F958C52D27C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2Tests" */;
+			buildPhases = (
+				F958C51227C9EFBD009537BD /* Sources */,
+				F958C51327C9EFBD009537BD /* Frameworks */,
+				F958C51427C9EFBD009537BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F958C51827C9EFBD009537BD /* PBXTargetDependency */,
+			);
+			name = GPSLoggerV2Tests;
+			productName = GPSLoggerV2Tests;
+			productReference = F958C51627C9EFBD009537BD /* GPSLoggerV2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F958C51F27C9EFBD009537BD /* GPSLoggerV2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F958C53027C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2UITests" */;
+			buildPhases = (
+				F958C51C27C9EFBD009537BD /* Sources */,
+				F958C51D27C9EFBD009537BD /* Frameworks */,
+				F958C51E27C9EFBD009537BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F958C52227C9EFBD009537BD /* PBXTargetDependency */,
+			);
+			name = GPSLoggerV2UITests;
+			productName = GPSLoggerV2UITests;
+			productReference = F958C52027C9EFBD009537BD /* GPSLoggerV2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F958C4F527C9EFB4009537BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					F958C4FC27C9EFB4009537BD = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					F958C51527C9EFBD009537BD = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = F958C4FC27C9EFB4009537BD;
+					};
+					F958C51F27C9EFBD009537BD = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = F958C4FC27C9EFB4009537BD;
+					};
+				};
+			};
+			buildConfigurationList = F958C4F827C9EFB4009537BD /* Build configuration list for PBXProject "GPSLoggerV2" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F958C4F427C9EFB4009537BD;
+			productRefGroup = F958C4FE27C9EFB4009537BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F958C4FC27C9EFB4009537BD /* GPSLoggerV2 */,
+				F958C51527C9EFBD009537BD /* GPSLoggerV2Tests */,
+				F958C51F27C9EFBD009537BD /* GPSLoggerV2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F958C4FB27C9EFB4009537BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F958C51027C9EFBC009537BD /* LaunchScreen.storyboard in Resources */,
+				F958C50D27C9EFBC009537BD /* Assets.xcassets in Resources */,
+				F958C50827C9EFB4009537BD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F958C51427C9EFBD009537BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F958C51E27C9EFBD009537BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F958C4F927C9EFB4009537BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F958C50527C9EFB4009537BD /* ViewController.swift in Sources */,
+				F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */,
+				F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */,
+				F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F958C51227C9EFBD009537BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F958C51B27C9EFBD009537BD /* GPSLoggerV2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F958C51C27C9EFBD009537BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F958C52527C9EFBD009537BD /* GPSLoggerV2UITests.swift in Sources */,
+				F958C52727C9EFBD009537BD /* GPSLoggerV2UITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F958C51827C9EFBD009537BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F958C4FC27C9EFB4009537BD /* GPSLoggerV2 */;
+			targetProxy = F958C51727C9EFBD009537BD /* PBXContainerItemProxy */;
+		};
+		F958C52227C9EFBD009537BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F958C4FC27C9EFB4009537BD /* GPSLoggerV2 */;
+			targetProxy = F958C52127C9EFBD009537BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F958C50627C9EFB4009537BD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F958C50727C9EFB4009537BD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F958C50E27C9EFBC009537BD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F958C50F27C9EFBC009537BD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F958C52827C9EFBD009537BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F958C52927C9EFBD009537BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F958C52B27C9EFBD009537BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEL4H37J9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GPSLoggerV2/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nagoya.kyoto.GPSLoggerV2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F958C52C27C9EFBD009537BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEL4H37J9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GPSLoggerV2/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nagoya.kyoto.GPSLoggerV2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F958C52E27C9EFBD009537BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEL4H37J9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nagoya.kyoto.GPSLoggerV2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPSLoggerV2.app/GPSLoggerV2";
+			};
+			name = Debug;
+		};
+		F958C52F27C9EFBD009537BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEL4H37J9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nagoya.kyoto.GPSLoggerV2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPSLoggerV2.app/GPSLoggerV2";
+			};
+			name = Release;
+		};
+		F958C53127C9EFBD009537BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEL4H37J9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nagoya.kyoto.GPSLoggerV2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GPSLoggerV2;
+			};
+			name = Debug;
+		};
+		F958C53227C9EFBD009537BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UAEL4H37J9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nagoya.kyoto.GPSLoggerV2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GPSLoggerV2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F958C4F827C9EFB4009537BD /* Build configuration list for PBXProject "GPSLoggerV2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F958C52827C9EFBD009537BD /* Debug */,
+				F958C52927C9EFBD009537BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F958C52A27C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F958C52B27C9EFBD009537BD /* Debug */,
+				F958C52C27C9EFBD009537BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F958C52D27C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F958C52E27C9EFBD009537BD /* Debug */,
+				F958C52F27C9EFBD009537BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F958C53027C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F958C53127C9EFBD009537BD /* Debug */,
+				F958C53227C9EFBD009537BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F958C50927C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F958C50A27C9EFB4009537BD /* GPSLoggerV2.xcdatamodel */,
+			);
+			currentVersion = F958C50A27C9EFB4009537BD /* GPSLoggerV2.xcdatamodel */;
+			path = GPSLoggerV2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F958C4F527C9EFB4009537BD /* Project object */;
+}
