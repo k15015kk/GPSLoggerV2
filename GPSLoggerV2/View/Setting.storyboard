@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Setting View Controller-->
+        <!--Setting Table View Controller-->
         <scene sceneID="CZX-pa-s1t">
             <objects>
-                <tableViewController id="7Sd-7E-Hhz" customClass="SettingViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7Sd-7E-Hhz" customClass="SettingTableViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Fpc-Zm-Ae8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,6 +68,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="EcA-yO-foO" kind="show" id="8r3-nO-zVR"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="desiredAccuracy" textLabel="LjJ-ht-Lc2" detailTextLabel="Mw2-9E-vgl" style="IBUITableViewCellStyleValue1" id="z0W-AR-gbH">
                                         <rect key="frame" x="0.0" y="131.5" width="414" height="43.5"/>
@@ -111,12 +114,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWY-JS-nO6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.10144927536237" y="46.875"/>
+            <point key="canvasLocation" x="1533" y="47"/>
         </scene>
-        <!--Distance Filter Setting View Controller-->
+        <!--Distance Filter Table View Controller-->
         <scene sceneID="te3-c2-9JQ">
             <objects>
-                <tableViewController id="e97-Rj-wRy" customClass="DistanceFilterSettingViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="e97-Rj-wRy" customClass="DistanceFilterTableViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ZDR-rv-fBx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +141,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="BpK-47-8BE"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
@@ -165,7 +168,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1k-0D-GaG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="47"/>
+            <point key="canvasLocation" x="958" y="891"/>
         </scene>
         <!--Setting-->
         <scene sceneID="hJ4-f3-fuO">
@@ -186,6 +189,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQ3-c9-aeA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="86.956521739130437" y="46.875"/>
+        </scene>
+        <!--Desired Accuracy Setting View Controller-->
+        <scene sceneID="udm-fB-hSx">
+            <objects>
+                <tableViewController id="EcA-yO-foO" userLabel="Desired Accuracy Setting View Controller" customClass="DesiredAccuracyTableViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="6kF-7o-g6S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <sections>
+                            <tableViewSection headerTitle="精度フィルタの設定(m)" id="XxW-nJ-cTy">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Km5-DN-3qE">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="48.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Km5-DN-3qE" id="oQS-ny-r9m">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="精度フィルタを設定します" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ocn-Cg-jd8">
+                                                    <rect key="frame" x="24" y="8" width="366" height="32.5"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="UT7-j3-XAe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ocn-Cg-jd8" secondAttribute="trailing" constant="24" id="ISU-G6-Nad"/>
+                                                <constraint firstItem="ocn-Cg-jd8" firstAttribute="leading" secondItem="oQS-ny-r9m" secondAttribute="leading" constant="24" id="hcO-VO-PVj"/>
+                                                <constraint firstItem="ocn-Cg-jd8" firstAttribute="top" secondItem="oQS-ny-r9m" secondAttribute="top" constant="8" id="n2M-u1-rDg"/>
+                                                <constraint firstAttribute="bottom" secondItem="ocn-Cg-jd8" secondAttribute="bottom" constant="8" id="uq7-TU-5V1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="EcA-yO-foO" id="HVW-GK-sTP"/>
+                            <outlet property="delegate" destination="EcA-yO-foO" id="pdP-v2-qwN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ofi-9l-U0x"/>
+                    <connections>
+                        <outlet property="desiredAccuracyTextField" destination="ocn-Cg-jd8" id="9Sd-Kj-eTj"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="181-xF-EEP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2168" y="897"/>
         </scene>
     </scenes>
     <resources>

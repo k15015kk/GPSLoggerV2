@@ -11,8 +11,9 @@
 		F91CEC2A2830CAB20024F1CF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC292830CAB20024F1CF /* Map.storyboard */; };
 		F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */; };
 		F91CEC2E2830E6CE0024F1CF /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */; };
-		F91CEC302830F1FB0024F1CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2F2830F1FB0024F1CF /* SettingViewController.swift */; };
-		F91CEC3228312CED0024F1CF /* DistanceFilterSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3128312CED0024F1CF /* DistanceFilterSettingViewController.swift */; };
+		F91CEC302830F1FB0024F1CF /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2F2830F1FB0024F1CF /* SettingTableViewController.swift */; };
+		F91CEC3228312CED0024F1CF /* DistanceFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */; };
+		F91CEC35283152660024F1CF /* DesiredAccuracyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */; };
 		F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50027C9EFB4009537BD /* AppDelegate.swift */; };
 		F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50227C9EFB4009537BD /* SceneDelegate.swift */; };
 		F958C50827C9EFB4009537BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F958C50627C9EFB4009537BD /* Main.storyboard */; };
@@ -46,8 +47,9 @@
 		F91CEC292830CAB20024F1CF /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoardingViewController.swift; sourceTree = "<group>"; };
 		F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
-		F91CEC2F2830F1FB0024F1CF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		F91CEC3128312CED0024F1CF /* DistanceFilterSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFilterSettingViewController.swift; sourceTree = "<group>"; };
+		F91CEC2F2830F1FB0024F1CF /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFilterTableViewController.swift; sourceTree = "<group>"; };
+		F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesiredAccuracyTableViewController.swift; sourceTree = "<group>"; };
 		F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLoggerV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F958C50027C9EFB4009537BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F958C50227C9EFB4009537BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,8 +155,9 @@
 		F91CEC3328312CF10024F1CF /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				F91CEC2F2830F1FB0024F1CF /* SettingViewController.swift */,
-				F91CEC3128312CED0024F1CF /* DistanceFilterSettingViewController.swift */,
+				F91CEC2F2830F1FB0024F1CF /* SettingTableViewController.swift */,
+				F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */,
+				F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -351,8 +354,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F91CEC302830F1FB0024F1CF /* SettingViewController.swift in Sources */,
-				F91CEC3228312CED0024F1CF /* DistanceFilterSettingViewController.swift in Sources */,
+				F91CEC302830F1FB0024F1CF /* SettingTableViewController.swift in Sources */,
+				F91CEC35283152660024F1CF /* DesiredAccuracyTableViewController.swift in Sources */,
+				F91CEC3228312CED0024F1CF /* DistanceFilterTableViewController.swift in Sources */,
 				F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */,
 				F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */,
 				F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */,

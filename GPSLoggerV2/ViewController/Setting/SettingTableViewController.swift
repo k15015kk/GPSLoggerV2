@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingViewController: UITableViewController {
+class SettingTableViewController: UITableViewController {
     
     @IBOutlet private weak var distanceFilterLabel: UILabel!
     @IBOutlet private weak var desiredAccuracyLabel: UILabel!
@@ -18,8 +18,11 @@ class SettingViewController: UITableViewController {
         
         // UserDefaultが保存されている場合，それを表示する
         if let distanceFilter = UserDefaults.standard.value(forKey: "distanceFilter") as? String {
-            
             distanceFilterLabel.text = distanceFilter
+        }
+        
+        if let desiredAccuracy = UserDefaults.standard.value(forKey: "desiredAccuracy") as? String {
+            desiredAccuracyLabel.text = desiredAccuracy
         }
         
         NotificationCenter.default.addObserver(
@@ -58,6 +61,10 @@ class SettingViewController: UITableViewController {
         // UserDefaultsの変更があったので画面の情報を更新する
         if let distanceFilter = UserDefaults.standard.value(forKey: "distanceFilter") as? String {
             distanceFilterLabel.text = distanceFilter
+        }
+        
+        if let desiredAccuracy = UserDefaults.standard.value(forKey: "desiredAccuracy") as? String {
+            desiredAccuracyLabel.text = desiredAccuracy
         }
     }
 }

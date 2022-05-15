@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DistanceFilterSettingViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class DistanceFilterTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet private weak var distanceFilterTextField: UITextField!
     
@@ -94,7 +94,7 @@ class DistanceFilterSettingViewController: UITableViewController, UITextFieldDel
     }
 }
 
-extension DistanceFilterSettingViewController {
+extension DistanceFilterTableViewController {
     func checkFloatDistanceFilter(distance distanceFilter: String?) -> Bool {
         
         guard let distanceFilter = distanceFilter else {
