@@ -16,9 +16,8 @@ class DistanceFilterTableViewController: UITableViewController, UITextFieldDeleg
         distanceFilterTextField.delegate = self
         
         // UserDefaultが保存されている場合，それを表示する
-        if let distanceFilter = UserDefaults.standard.value(forKey: "distanceFilter") as? String {
-            distanceFilterTextField.text = distanceFilter
-        }
+        let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
+        distanceFilterTextField.text = String(distanceFilter)
         
         // UITapGestureRecognizerを定義
         let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
@@ -145,7 +144,7 @@ extension DistanceFilterTableViewController {
         let defaults = UserDefaults.standard
         
         if let distanceFilterValue = Float(distanceFilter) {
-            defaults.set(String(distanceFilterValue), forKey: "distanceFilter")
+            defaults.set(distanceFilterValue, forKey: "distanceFilter")
             distanceFilterTextField.text = String(distanceFilterValue)
         }
         

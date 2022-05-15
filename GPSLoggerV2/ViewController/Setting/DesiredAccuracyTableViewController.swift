@@ -16,9 +16,8 @@ class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDele
         desiredAccuracyTextField.delegate = self
         
         // UserDefaultが保存されている場合，それを表示する
-        if let desiredAccuracy = UserDefaults.standard.value(forKey: "desiredAccuracy") as? String {
-            desiredAccuracyTextField.text = desiredAccuracy
-        }
+        let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
+        desiredAccuracyTextField.text = String(desiredAccuracy)
         
         // UITapGestureRecognizerを定義
         let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
@@ -146,7 +145,7 @@ extension DesiredAccuracyTableViewController {
         let defaults = UserDefaults.standard
         
         if let desiredAccuracyValue = Float(desiredAccuracy) {
-            defaults.set(String(desiredAccuracyValue), forKey: "desiredAccuracy")
+            defaults.set(desiredAccuracyValue, forKey: "desiredAccuracy")
             desiredAccuracyTextField.text = String(desiredAccuracyValue)
         }
         

@@ -17,12 +17,27 @@ class SettingTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // UserDefaultが保存されている場合，それを表示する
-        if let distanceFilter = UserDefaults.standard.value(forKey: "distanceFilter") as? String {
-            distanceFilterLabel.text = distanceFilter
-        }
+        let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
+        distanceFilterLabel.text = String(distanceFilter)
         
-        if let desiredAccuracy = UserDefaults.standard.value(forKey: "desiredAccuracy") as? String {
-            desiredAccuracyLabel.text = desiredAccuracy
+        let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
+        desiredAccuracyLabel.text = String(desiredAccuracy)
+        
+        let activityType = UserDefaults.standard.integer(forKey: "activityType")
+        
+        switch activityType {
+        case 0:
+            activityTypeLabel.text = "フィットネス"
+        case 1:
+            activityTypeLabel.text = "オートモーティブナビゲーション"
+        case 2:
+            activityTypeLabel.text = "その他の車両ナビゲーション"
+        case 3:
+            activityTypeLabel.text = "空中"
+        case 4:
+            activityTypeLabel.text = "その他"
+        default:
+            activityTypeLabel.text = "未設定"
         }
         
         NotificationCenter.default.addObserver(
@@ -59,12 +74,27 @@ class SettingTableViewController: UITableViewController {
     
     @objc func userDefaultsDidChange(_ notification: Notification) {
         // UserDefaultsの変更があったので画面の情報を更新する
-        if let distanceFilter = UserDefaults.standard.value(forKey: "distanceFilter") as? String {
-            distanceFilterLabel.text = distanceFilter
-        }
+        let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
+        distanceFilterLabel.text = String(distanceFilter)
         
-        if let desiredAccuracy = UserDefaults.standard.value(forKey: "desiredAccuracy") as? String {
-            desiredAccuracyLabel.text = desiredAccuracy
+        let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
+        desiredAccuracyLabel.text = String(desiredAccuracy)
+        
+        let activityType = UserDefaults.standard.integer(forKey: "activityType")
+        
+        switch activityType {
+        case 0:
+            activityTypeLabel.text = "フィットネス"
+        case 1:
+            activityTypeLabel.text = "オートモーティブナビゲーション"
+        case 2:
+            activityTypeLabel.text = "その他の車両ナビゲーション"
+        case 3:
+            activityTypeLabel.text = "空中"
+        case 4:
+            activityTypeLabel.text = "その他"
+        default:
+            activityTypeLabel.text = "未設定"
         }
     }
 }
