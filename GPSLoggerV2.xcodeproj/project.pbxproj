@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F91CEC282830CA770024F1CF /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC272830CA770024F1CF /* Recording.storyboard */; };
+		F91CEC2A2830CAB20024F1CF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC292830CAB20024F1CF /* Map.storyboard */; };
+		F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */; };
 		F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50027C9EFB4009537BD /* AppDelegate.swift */; };
 		F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50227C9EFB4009537BD /* SceneDelegate.swift */; };
-		F958C50527C9EFB4009537BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50427C9EFB4009537BD /* ViewController.swift */; };
 		F958C50827C9EFB4009537BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F958C50627C9EFB4009537BD /* Main.storyboard */; };
 		F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F958C50927C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld */; };
 		F958C50D27C9EFBC009537BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F958C50C27C9EFBC009537BD /* Assets.xcassets */; };
@@ -37,10 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F91CEC272830CA770024F1CF /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
+		F91CEC292830CAB20024F1CF /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoardingViewController.swift; sourceTree = "<group>"; };
 		F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLoggerV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F958C50027C9EFB4009537BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F958C50227C9EFB4009537BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F958C50427C9EFB4009537BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F958C50727C9EFB4009537BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F958C50A27C9EFB4009537BD /* GPSLoggerV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSLoggerV2.xcdatamodel; sourceTree = "<group>"; };
 		F958C50C27C9EFBC009537BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +82,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F91CEC1528309D190024F1CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F91CEC1628309D220024F1CF /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		F91CEC1728309D2B0024F1CF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F91CEC1828309D580024F1CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F91CEC1E2830A06D0024F1CF /* Common */,
+				F91CEC292830CAB20024F1CF /* Map.storyboard */,
+				F91CEC272830CA770024F1CF /* Recording.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F91CEC1928309D660024F1CF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F91CEC1A28309D6C0024F1CF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F91CEC1C28309FBF0024F1CF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F91CEC1E2830A06D0024F1CF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		F958C4F427C9EFB4009537BD = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +165,15 @@
 		F958C4FF27C9EFB4009537BD /* GPSLoggerV2 */ = {
 			isa = PBXGroup;
 			children = (
+				F91CEC1528309D190024F1CF /* Model */,
+				F91CEC1628309D220024F1CF /* VIewModel */,
+				F91CEC1728309D2B0024F1CF /* ViewController */,
+				F91CEC1828309D580024F1CF /* View */,
+				F91CEC1C28309FBF0024F1CF /* Helper */,
+				F91CEC1A28309D6C0024F1CF /* Utils */,
+				F91CEC1928309D660024F1CF /* Extensions */,
 				F958C50027C9EFB4009537BD /* AppDelegate.swift */,
 				F958C50227C9EFB4009537BD /* SceneDelegate.swift */,
-				F958C50427C9EFB4009537BD /* ViewController.swift */,
 				F958C50627C9EFB4009537BD /* Main.storyboard */,
 				F958C50C27C9EFBC009537BD /* Assets.xcassets */,
 				F958C50E27C9EFBC009537BD /* LaunchScreen.storyboard */,
@@ -234,7 +304,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F91CEC282830CA770024F1CF /* Recording.storyboard in Resources */,
 				F958C51027C9EFBC009537BD /* LaunchScreen.storyboard in Resources */,
+				F91CEC2A2830CAB20024F1CF /* Map.storyboard in Resources */,
 				F958C50D27C9EFBC009537BD /* Assets.xcassets in Resources */,
 				F958C50827C9EFB4009537BD /* Main.storyboard in Resources */,
 			);
@@ -261,7 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F958C50527C9EFB4009537BD /* ViewController.swift in Sources */,
+				F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */,
 				F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */,
 				F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */,
 				F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */,
