@@ -44,12 +44,15 @@ class RecordingViewController: UIViewController {
         // ボタンの設定
         self.RecordingButton.setTitle("位置取得", for: .normal)
         self.RecordingButton.tintColor = UIColor.systemBlue
+        self.RecordingButton.isEnabled = true
         
         self.ResetButton.setTitle("リセット", for: .normal)
         self.ResetButton.tintColor = UIColor.systemRed
+        self.ResetButton.isEnabled = true
         
         self.SaveBotton.setTitle("保存", for: .normal)
         self.SaveBotton.tintColor = UIColor.systemBlue
+        self.SaveBotton.isEnabled = true
         
         
         NotificationCenter.default.addObserver(
@@ -110,33 +113,31 @@ class RecordingViewController: UIViewController {
             return
         }
         
-        if isLocationUpdate {
+        if !isLocationUpdate {
             vm.startLocation()
-            isLocationUpdate = false
-            
-            // ボタンの設定
-            self.RecordingButton.setTitle("取得停止", for: .normal)
-            self.RecordingButton.tintColor = UIColor.systemRed
-            
-            self.ResetButton.setTitle("リセット", for: .disabled)
-            self.ResetButton.tintColor = UIColor.systemGray
-            
-            self.SaveBotton.setTitle("保存", for: .disabled)
-            self.SaveBotton.tintColor = UIColor.systemGray
-            
-        } else {
-            vm.stopLocation()
             isLocationUpdate = true
             
             // ボタンの設定
-            self.RecordingButton.setTitle("位置取得", for: .normal)
+            self.RecordingButton.tintColor = UIColor.systemRed
+            
+            self.ResetButton.tintColor = UIColor.systemGray
+            self.ResetButton.isEnabled = false
+            
+            self.SaveBotton.tintColor = UIColor.systemGray
+            self.SaveBotton.isEnabled = false
+            
+        } else {
+            vm.stopLocation()
+            isLocationUpdate = false
+            
+            // ボタンの設定
             self.RecordingButton.tintColor = UIColor.systemBlue
             
-            self.ResetButton.setTitle("リセット", for: .normal)
             self.ResetButton.tintColor = UIColor.systemRed
+            self.ResetButton.isEnabled = true
             
-            self.SaveBotton.setTitle("保存", for: .normal)
             self.SaveBotton.tintColor = UIColor.systemBlue
+            self.SaveBotton.isEnabled = true
         }
     }
 
