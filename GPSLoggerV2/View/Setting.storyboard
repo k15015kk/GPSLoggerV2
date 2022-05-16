@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="位置情報の取得設定" id="iAZ-Hh-g5B">
+                            <tableViewSection headerTitle="取得間隔・精度" id="iAZ-Hh-g5B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="distanceFilter" textLabel="eqg-IR-6j9" detailTextLabel="3zQ-M7-XjU" style="IBUITableViewCellStyleValue1" id="7vh-Yc-c9h">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -101,6 +101,68 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="位置情報の制御" id="mA3-hE-XtY">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="distanceFilter" id="JuX-Dy-r9p">
+                                        <rect key="frame" x="0.0" y="242" width="414" height="47.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JuX-Dy-r9p" id="EP3-bo-Z5B">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vK-TC-Eec">
+                                                    <rect key="frame" x="341" y="8" width="51" height="31.5"/>
+                                                    <connections>
+                                                        <action selector="actionSwitchBackgroundFetch:" destination="7Sd-7E-Hhz" eventType="valueChanged" id="BmB-XV-QV9"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="バックグラウンド取得" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROI-qX-Xpa">
+                                                    <rect key="frame" x="20" y="13.5" width="174" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="4vK-TC-Eec" secondAttribute="trailing" constant="24" id="6tr-uY-bqW"/>
+                                                <constraint firstItem="4vK-TC-Eec" firstAttribute="top" secondItem="EP3-bo-Z5B" secondAttribute="top" constant="8" id="71X-0E-p6x"/>
+                                                <constraint firstItem="4vK-TC-Eec" firstAttribute="centerY" secondItem="ROI-qX-Xpa" secondAttribute="centerY" id="TG2-9Y-U9o"/>
+                                                <constraint firstAttribute="bottom" secondItem="4vK-TC-Eec" secondAttribute="bottom" constant="8" id="YuO-q5-RJU"/>
+                                                <constraint firstItem="ROI-qX-Xpa" firstAttribute="leading" secondItem="EP3-bo-Z5B" secondAttribute="leadingMargin" id="dz5-UW-oZT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="distanceFilter" id="2gx-x7-gl1">
+                                        <rect key="frame" x="0.0" y="289.5" width="414" height="47.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2gx-x7-gl1" id="JhJ-fi-vuT">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZV-hu-gY0">
+                                                    <rect key="frame" x="341" y="8" width="51" height="31.5"/>
+                                                    <connections>
+                                                        <action selector="actionSwitchLocationUpdatePauses:" destination="7Sd-7E-Hhz" eventType="valueChanged" id="R5j-Bu-euA"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新の自動一時停止" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpz-nT-Ruq">
+                                                    <rect key="frame" x="20" y="13.5" width="156" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="rZV-hu-gY0" secondAttribute="bottom" constant="8" id="ObL-Rw-93C"/>
+                                                <constraint firstItem="Vpz-nT-Ruq" firstAttribute="leading" secondItem="JhJ-fi-vuT" secondAttribute="leadingMargin" id="Oqz-KM-qqb"/>
+                                                <constraint firstAttribute="trailing" secondItem="rZV-hu-gY0" secondAttribute="trailing" constant="24" id="a2H-rG-lQN"/>
+                                                <constraint firstItem="rZV-hu-gY0" firstAttribute="top" secondItem="JhJ-fi-vuT" secondAttribute="top" constant="8" id="h43-S4-0G1"/>
+                                                <constraint firstItem="rZV-hu-gY0" firstAttribute="centerY" secondItem="Vpz-nT-Ruq" secondAttribute="centerY" id="kdF-ib-1RB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="7Sd-7E-Hhz" id="HQi-PX-WfQ"/>
@@ -111,6 +173,8 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityTypeLabel" destination="Mw2-9E-vgl" id="Jpq-ie-oeb"/>
+                        <outlet property="automaticallyUpdatePausesSwitch" destination="rZV-hu-gY0" id="2FG-o0-hvN"/>
+                        <outlet property="backgroundFetchSwitch" destination="4vK-TC-Eec" id="0md-iu-2mD"/>
                         <outlet property="desiredAccuracyLabel" destination="zSw-94-sUe" id="yCe-Ad-7n4"/>
                         <outlet property="distanceFilterLabel" destination="3zQ-M7-XjU" id="MQb-19-1m0"/>
                     </connections>
