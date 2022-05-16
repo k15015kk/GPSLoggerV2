@@ -7,8 +7,9 @@
 
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
-    var locationManager : CLLocationManager?
+class LocationHelper: NSObject, CLLocationManagerDelegate {
+    var locationManager: CLLocationManager?
+    var newLocation: CLLocation?
     
     override init() {
         super.init()
@@ -16,6 +17,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         // LocationManagerの定義
         locationManager = CLLocationManager()
         locationManager!.delegate = self
+        
+        self.newLocation = CLLocation()
         
         // 各種設定値の設定
         self.settingLocationManager()
@@ -61,7 +64,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             return
         }
         
-        print(newLocation)
+        print("newLocation = \(newLocation)")
+        
+        self.newLocation = newLocation
+        
+        
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -84,7 +91,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 }
 
-extension LocationManager {
+extension LocationHelper {
     
     /// UserDefaultsが更新されたときに実行
     /// - Parameter notification: Notification情報
@@ -102,7 +109,7 @@ extension LocationManager {
         manager.distanceFilter = CLLocationDistance(distanceFilterValue)
         
         // 精度フィルタの設定
-        let desiredAccuracyValue = UserDefaults.standard.float(forKey: "distanceFilter")
+        let desiredAccuracyValue = UserDefaults.standard.float(forKey: "desiredAccuracy")
         manager.desiredAccuracy = CLLocationAccuracy(desiredAccuracyValue)
         
         // アクティビティタイプの設定

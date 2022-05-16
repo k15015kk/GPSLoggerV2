@@ -6,23 +6,23 @@
 //
 
 import UIKit
+import CoreLocation
 
 class RecordingViewController: UIViewController {
     
-    var locationManager: LocationManager?
+    var viewModel: RecordingViewModel?
     var isLocationUpdate: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ロケーションを初期化する
-        locationManager = LocationManager()
-        
+        self.viewModel = RecordingViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         // 位置情報が許可されていない場合，その旨のアラートを出す
-        if let authorization = locationManager?.locationManager?.authorizationStatus {
+        if let authorization = viewModel?.authorization {
             switch authorization {
             case .denied:
                 // アラート設定
@@ -47,19 +47,19 @@ class RecordingViewController: UIViewController {
             }
         }
         
-
     }
     
     @IBAction func actionLocationUpdate(_ sender: Any) {
-        guard let manager = locationManager else {
+        
+        guard let vm = viewModel else {
             return
         }
         
         if isLocationUpdate {
-            manager.stopLocationUpdate()
+            vm.startLocation()
             isLocationUpdate = false
         } else {
-            manager.startLocationUpdate()
+            vm.stopLocation()
             isLocationUpdate = true
         }
     }

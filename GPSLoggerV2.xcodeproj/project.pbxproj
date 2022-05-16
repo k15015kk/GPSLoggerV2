@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0A4B0F1E00C10374DC833C /* Pods_GPSLoggerV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3662E26460FA9563EBCAC953 /* Pods_GPSLoggerV2.framework */; };
 		F91CEC282830CA770024F1CF /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC272830CA770024F1CF /* Recording.storyboard */; };
 		F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */; };
 		F91CEC2E2830E6CE0024F1CF /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */; };
@@ -14,9 +15,11 @@
 		F91CEC3228312CED0024F1CF /* DistanceFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */; };
 		F91CEC35283152660024F1CF /* DesiredAccuracyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */; };
 		F91CEC3728315C170024F1CF /* ActivityTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3628315C170024F1CF /* ActivityTypeTableViewController.swift */; };
-		F91CEC39283201F50024F1CF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC38283201F50024F1CF /* LocationManager.swift */; };
+		F91CEC39283201F50024F1CF /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC38283201F50024F1CF /* LocationHelper.swift */; };
 		F91CEC3B283212130024F1CF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3A283212130024F1CF /* Alert.swift */; };
 		F91CEC3D283222870024F1CF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3C283222870024F1CF /* LocationModel.swift */; };
+		F91CEC3F283233A50024F1CF /* LocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3E283233A50024F1CF /* LocationObject.swift */; };
+		F91CEC41283234460024F1CF /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC40283234460024F1CF /* RecordingViewModel.swift */; };
 		F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50027C9EFB4009537BD /* AppDelegate.swift */; };
 		F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50227C9EFB4009537BD /* SceneDelegate.swift */; };
 		F958C50827C9EFB4009537BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F958C50627C9EFB4009537BD /* Main.storyboard */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3662E26460FA9563EBCAC953 /* Pods_GPSLoggerV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPSLoggerV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A202B1211B7AEEA41F56EB5 /* Pods-GPSLoggerV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSLoggerV2.debug.xcconfig"; path = "Target Support Files/Pods-GPSLoggerV2/Pods-GPSLoggerV2.debug.xcconfig"; sourceTree = "<group>"; };
+		95E08580B63530BF2C31DA5D /* Pods-GPSLoggerV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSLoggerV2.release.xcconfig"; path = "Target Support Files/Pods-GPSLoggerV2/Pods-GPSLoggerV2.release.xcconfig"; sourceTree = "<group>"; };
 		F91CEC272830CA770024F1CF /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
 		F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoardingViewController.swift; sourceTree = "<group>"; };
 		F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -53,9 +59,11 @@
 		F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFilterTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesiredAccuracyTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC3628315C170024F1CF /* ActivityTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeTableViewController.swift; sourceTree = "<group>"; };
-		F91CEC38283201F50024F1CF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F91CEC38283201F50024F1CF /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		F91CEC3A283212130024F1CF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		F91CEC3C283222870024F1CF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		F91CEC3E283233A50024F1CF /* LocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationObject.swift; sourceTree = "<group>"; };
+		F91CEC40283234460024F1CF /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
 		F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLoggerV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F958C50027C9EFB4009537BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F958C50227C9EFB4009537BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C0A4B0F1E00C10374DC833C /* Pods_GPSLoggerV2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,10 +105,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2671457887E5360680B0D0A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A202B1211B7AEEA41F56EB5 /* Pods-GPSLoggerV2.debug.xcconfig */,
+				95E08580B63530BF2C31DA5D /* Pods-GPSLoggerV2.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		30B5DABC8F0308CD7AAD0A74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3662E26460FA9563EBCAC953 /* Pods_GPSLoggerV2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F91CEC1528309D190024F1CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F91CEC3C283222870024F1CF /* LocationModel.swift */,
+				F91CEC3E283233A50024F1CF /* LocationObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,6 +134,7 @@
 		F91CEC1628309D220024F1CF /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F91CEC40283234460024F1CF /* RecordingViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -148,7 +176,7 @@
 		F91CEC1C28309FBF0024F1CF /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				F91CEC38283201F50024F1CF /* LocationManager.swift */,
+				F91CEC38283201F50024F1CF /* LocationHelper.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -178,6 +206,8 @@
 				F958C51927C9EFBD009537BD /* GPSLoggerV2Tests */,
 				F958C52327C9EFBD009537BD /* GPSLoggerV2UITests */,
 				F958C4FE27C9EFB4009537BD /* Products */,
+				2671457887E5360680B0D0A6 /* Pods */,
+				30B5DABC8F0308CD7AAD0A74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,9 +266,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F958C52A27C9EFBD009537BD /* Build configuration list for PBXNativeTarget "GPSLoggerV2" */;
 			buildPhases = (
+				840AE594693B6603293E7C4A /* [CP] Check Pods Manifest.lock */,
 				F958C4F927C9EFB4009537BD /* Sources */,
 				F958C4FA27C9EFB4009537BD /* Frameworks */,
 				F958C4FB27C9EFB4009537BD /* Resources */,
+				E3D410425B1BE746CEFF664B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,6 +389,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		840AE594693B6603293E7C4A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GPSLoggerV2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3D410425B1BE746CEFF664B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPSLoggerV2/Pods-GPSLoggerV2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPSLoggerV2/Pods-GPSLoggerV2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GPSLoggerV2/Pods-GPSLoggerV2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F958C4F927C9EFB4009537BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -368,11 +442,13 @@
 				F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */,
 				F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */,
 				F91CEC3D283222870024F1CF /* LocationModel.swift in Sources */,
+				F91CEC41283234460024F1CF /* RecordingViewModel.swift in Sources */,
 				F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */,
+				F91CEC3F283233A50024F1CF /* LocationObject.swift in Sources */,
 				F91CEC3728315C170024F1CF /* ActivityTypeTableViewController.swift in Sources */,
 				F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */,
 				F91CEC3B283212130024F1CF /* Alert.swift in Sources */,
-				F91CEC39283201F50024F1CF /* LocationManager.swift in Sources */,
+				F91CEC39283201F50024F1CF /* LocationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +622,7 @@
 		};
 		F958C52B27C9EFBD009537BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A202B1211B7AEEA41F56EB5 /* Pods-GPSLoggerV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -576,6 +653,7 @@
 		};
 		F958C52C27C9EFBD009537BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95E08580B63530BF2C31DA5D /* Pods-GPSLoggerV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
