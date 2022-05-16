@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		F91CEC282830CA770024F1CF /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC272830CA770024F1CF /* Recording.storyboard */; };
-		F91CEC2A2830CAB20024F1CF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC292830CAB20024F1CF /* Map.storyboard */; };
 		F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */; };
 		F91CEC2E2830E6CE0024F1CF /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */; };
 		F91CEC302830F1FB0024F1CF /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC2F2830F1FB0024F1CF /* SettingTableViewController.swift */; };
 		F91CEC3228312CED0024F1CF /* DistanceFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */; };
 		F91CEC35283152660024F1CF /* DesiredAccuracyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */; };
 		F91CEC3728315C170024F1CF /* ActivityTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3628315C170024F1CF /* ActivityTypeTableViewController.swift */; };
+		F91CEC39283201F50024F1CF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC38283201F50024F1CF /* LocationManager.swift */; };
+		F91CEC3B283212130024F1CF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3A283212130024F1CF /* Alert.swift */; };
+		F91CEC3D283222870024F1CF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3C283222870024F1CF /* LocationModel.swift */; };
 		F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50027C9EFB4009537BD /* AppDelegate.swift */; };
 		F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958C50227C9EFB4009537BD /* SceneDelegate.swift */; };
 		F958C50827C9EFB4009537BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F958C50627C9EFB4009537BD /* Main.storyboard */; };
@@ -45,13 +47,15 @@
 
 /* Begin PBXFileReference section */
 		F91CEC272830CA770024F1CF /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
-		F91CEC292830CAB20024F1CF /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		F91CEC2B2830CDE90024F1CF /* RecoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoardingViewController.swift; sourceTree = "<group>"; };
 		F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		F91CEC2F2830F1FB0024F1CF /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC3128312CED0024F1CF /* DistanceFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFilterTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesiredAccuracyTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC3628315C170024F1CF /* ActivityTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeTableViewController.swift; sourceTree = "<group>"; };
+		F91CEC38283201F50024F1CF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F91CEC3A283212130024F1CF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		F91CEC3C283222870024F1CF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		F958C4FD27C9EFB4009537BD /* GPSLoggerV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLoggerV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F958C50027C9EFB4009537BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F958C50227C9EFB4009537BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		F91CEC1528309D190024F1CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F91CEC3C283222870024F1CF /* LocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				F91CEC1E2830A06D0024F1CF /* Common */,
-				F91CEC292830CAB20024F1CF /* Map.storyboard */,
 				F91CEC272830CA770024F1CF /* Recording.storyboard */,
 				F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */,
 			);
@@ -136,15 +140,17 @@
 		F91CEC1A28309D6C0024F1CF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F91CEC3A283212130024F1CF /* Alert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F91CEC1C28309FBF0024F1CF /* Helper */ = {
+		F91CEC1C28309FBF0024F1CF /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				F91CEC38283201F50024F1CF /* LocationManager.swift */,
 			);
-			path = Helper;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		F91CEC1E2830A06D0024F1CF /* Common */ = {
@@ -192,7 +198,7 @@
 				F91CEC1628309D220024F1CF /* VIewModel */,
 				F91CEC1728309D2B0024F1CF /* ViewController */,
 				F91CEC1828309D580024F1CF /* View */,
-				F91CEC1C28309FBF0024F1CF /* Helper */,
+				F91CEC1C28309FBF0024F1CF /* Manager */,
 				F91CEC1A28309D6C0024F1CF /* Utils */,
 				F91CEC1928309D660024F1CF /* Extensions */,
 				F958C50027C9EFB4009537BD /* AppDelegate.swift */,
@@ -329,7 +335,6 @@
 			files = (
 				F91CEC282830CA770024F1CF /* Recording.storyboard in Resources */,
 				F958C51027C9EFBC009537BD /* LaunchScreen.storyboard in Resources */,
-				F91CEC2A2830CAB20024F1CF /* Map.storyboard in Resources */,
 				F958C50D27C9EFBC009537BD /* Assets.xcassets in Resources */,
 				F958C50827C9EFB4009537BD /* Main.storyboard in Resources */,
 				F91CEC2E2830E6CE0024F1CF /* Setting.storyboard in Resources */,
@@ -362,9 +367,12 @@
 				F91CEC3228312CED0024F1CF /* DistanceFilterTableViewController.swift in Sources */,
 				F91CEC2C2830CDE90024F1CF /* RecoardingViewController.swift in Sources */,
 				F958C50127C9EFB4009537BD /* AppDelegate.swift in Sources */,
+				F91CEC3D283222870024F1CF /* LocationModel.swift in Sources */,
 				F958C50B27C9EFB4009537BD /* GPSLoggerV2.xcdatamodeld in Sources */,
 				F91CEC3728315C170024F1CF /* ActivityTypeTableViewController.swift in Sources */,
 				F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */,
+				F91CEC3B283212130024F1CF /* Alert.swift in Sources */,
+				F91CEC39283201F50024F1CF /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +554,8 @@
 				DEVELOPMENT_TEAM = UAEL4H37J9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GPSLoggerV2/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を常に取得します";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "アプリ使用中に位置情報を取得します";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -574,6 +584,8 @@
 				DEVELOPMENT_TEAM = UAEL4H37J9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GPSLoggerV2/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を常に取得します";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "アプリ使用中に位置情報を取得します";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

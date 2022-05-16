@@ -54,6 +54,7 @@ class SettingTableViewController: UITableViewController {
         let automaticallyPausesUpdate = UserDefaults.standard.bool(forKey: "automaticallyLocationUpdatePauses")
         automaticallyUpdatePausesSwitch.setOn(automaticallyPausesUpdate, animated: false)
         
+        // UserDefaultsの更新通知
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(userDefaultsDidChange),

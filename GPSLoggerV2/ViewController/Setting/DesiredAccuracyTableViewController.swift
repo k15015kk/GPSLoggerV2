@@ -122,15 +122,7 @@ extension DesiredAccuracyTableViewController {
     
     func presentWarningAlert(_ title: String, _ message: String) {
         // アラートを定義
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // OKを押した際の処理を追加
-        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        // アラートにOKボタンを追加
-        alert.addAction(ok)
+        let alert = Alert.presentWarningAlert(title, message)
         
         // アラートを表示
         present(alert, animated: true, completion: nil)
