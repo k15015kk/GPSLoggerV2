@@ -68,7 +68,8 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
         
         self.newLocation = newLocation
         
-        
+        // 変更通知を投げる
+        NotificationCenter.default.post(name: .updateLocation, object: nil)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

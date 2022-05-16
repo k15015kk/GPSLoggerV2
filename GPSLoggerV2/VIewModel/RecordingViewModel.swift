@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import RealmSwift
 
 enum ViewModelState {
     case shouldUpdate
@@ -26,9 +27,21 @@ class RecordingViewModel {
     init() {
         locationModel = LocationModel()
         locationHelper = LocationHelper()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateLocation),
+            name: .updateLocation,
+            object: nil
+        )
     }
     
-    func updateLocationData(location: CLLocation) {
+    @objc func updateLocation(_ notification: Notification) {
+        
+        guard let location = locationHelper?.newLocation else {
+            return
+        }
+        
         // CLLocationから各種データを取得
         // 緯度経度
         let latitude: Double = location.coordinate.latitude
@@ -36,7 +49,12 @@ class RecordingViewModel {
         
         // 標高
         let altitude: Double = location.altitude
-        let ellipsoidalAltitude: Double = location.ellipsoidalAltitude
+        
+        var ellipsoidalAltitude: Double = 0.0
+        
+        if #available(iOS 15, *) {
+            ellipsoidalAltitude = location.ellipsoidalAltitude
+        }
         
         // フロア
         var floor:Int = 0
@@ -70,7 +88,7 @@ class RecordingViewModel {
         // attributesで定義して，モデルを初期化
         let attributes: [String: Any] = [
             "latitude": latitude,
-            "longtitude": longitude,
+            "longitude": longitude,
             "altitude": altitude,
             "ellipsoidalAltitude": ellipsoidalAltitude,
             "floor": floor,
@@ -87,6 +105,59 @@ class RecordingViewModel {
         ]
         
         locationModel = LocationModel(attributes: attributes)
+        
+        if locationModel != nil {
+            // 変更通知を投げる
+            NotificationCenter.default.post(name: .updateLocationModel, object: nil, userInfo: ["model": self.locationModel])
+        }
+        
+        // Realmに追加
+        writeRealmData()
+        
+        // DEBUG: Realmの書き込みを確認
+        let realm = try! Realm()
+        let result = realm.objects(LocationObject.self)
+        print("Realm Result = \(result)")
+    }
+    
+    
+    /// Realmデータベースにデータを追加
+    func writeRealmData() {
+        guard let model = locationModel else {
+            return
+        }
+        
+        let realm = try! Realm()
+        let object = LocationObject()
+        
+        object.latitude = model.latitude
+        object.longitude = model.longitude
+        object.altitude = model.altitude
+        object.ellipsoidalAltitude = model.ellipsoidalAltitude
+        object.floor = model.floor
+        object.horizontalAccuracy = model.horizontalAccuracy
+        object.vericalAccuracy = model.vericalAccuracy
+        object.timestamp = model.timestamp
+        object.speed = model.speed
+        object.speedAccuracy = model.speedAccuracy
+        object.course = model.course
+        object.courseAccuracy = model.courseAccuracy
+        object.distanceFilter = model.distanceFilter
+        object.desiredAccuracy = model.desiredAccuracy
+        object.activityType = model.activityType
+        
+        try! realm.write {
+            realm.add(LocationObject(value: object))
+        }
+    }
+    
+    /// Realmのデータを全消去します
+    func allDeleteRealmData() {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
     }
 }
 
