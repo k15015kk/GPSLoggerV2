@@ -7,12 +7,19 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class RecordingViewController: UIViewController {
     
-    @IBOutlet weak private var recordingButton: UIButton!
-    @IBOutlet weak private var saveButton: UIButton!
-    @IBOutlet weak private var resetButton: UIButton!
+    @IBOutlet private weak var SpeedView: UIView!
+    @IBOutlet private weak var AltitudeView: UIView!
+    
+    @IBOutlet private weak var speedLabel: UILabel!
+    @IBOutlet private weak var altitudeLabel: UILabel!
+    
+    @IBOutlet private weak var RecordingButton: UIButton!
+    @IBOutlet private weak var ResetButton: UIButton!
+    @IBOutlet private weak var SaveBotton: UIButton!
     
     var viewModel: RecordingViewModel?
     var isLocationUpdate: Bool = false
@@ -26,13 +33,23 @@ class RecordingViewController: UIViewController {
         // 今あるRealmのデータは全消去
         viewModel!.allDeleteRealmData()
         
-        recordingButton.setTitle("取得開始", for: .normal)
-        saveButton.setTitle("保存", for: .normal)
-        resetButton.setTitle("リセット", for: .normal)
+        // Viewを角丸にする
+        self.SpeedView.layer.cornerRadius = 4
+        self.AltitudeView.layer.cornerRadius = 4
         
-        recordingButton.tintColor = .green
-        saveButton.tintColor = .blue
-        resetButton.tintColor = .red
+        // Labelを初期化
+        self.speedLabel.text = "0km/h"
+        self.altitudeLabel.text = "0m"
+        
+        // ボタンの設定
+        self.RecordingButton.setTitle("位置取得", for: .normal)
+        self.RecordingButton.tintColor = UIColor.systemBlue
+        
+        self.ResetButton.setTitle("リセット", for: .normal)
+        self.ResetButton.tintColor = UIColor.systemRed
+        
+        self.SaveBotton.setTitle("保存", for: .normal)
+        self.SaveBotton.tintColor = UIColor.systemBlue
         
         
         NotificationCenter.default.addObserver(
@@ -74,8 +91,17 @@ class RecordingViewController: UIViewController {
     }
     
     @objc func updateLocationModel(notification: Notification) {
-        print("モデルの値が変更になりました")
-        print(notification.userInfo?["model"])
+        print("位置情報が更新されました")
+        
+        if let userInfo =  notification.userInfo?["model"]{
+            
+            let model = userInfo as! LocationModel
+            
+            print("speed = \(model.speed)")
+            
+            speedLabel.text = String(Int(model.speed)) + "km/h"
+            altitudeLabel.text = String(Int(model.altitude)) + "m"
+        }
     }
     
     @IBAction func actionLocationUpdate(_ sender: Any) {
@@ -88,24 +114,29 @@ class RecordingViewController: UIViewController {
             vm.startLocation()
             isLocationUpdate = false
             
-            recordingButton.setTitle("取得停止", for: .normal)
-            saveButton.setTitle("保存", for: .disabled)
-            resetButton.setTitle("リセット", for: .disabled)
+            // ボタンの設定
+            self.RecordingButton.setTitle("取得停止", for: .normal)
+            self.RecordingButton.tintColor = UIColor.systemRed
             
-            recordingButton.tintColor = .red
-            saveButton.tintColor = .gray
-            resetButton.tintColor = .gray
+            self.ResetButton.setTitle("リセット", for: .disabled)
+            self.ResetButton.tintColor = UIColor.systemGray
+            
+            self.SaveBotton.setTitle("保存", for: .disabled)
+            self.SaveBotton.tintColor = UIColor.systemGray
+            
         } else {
             vm.stopLocation()
             isLocationUpdate = true
             
-            recordingButton.setTitle("取得開始", for: .normal)
-            saveButton.setTitle("保存", for: .normal)
-            resetButton.setTitle("リセット", for: .normal)
+            // ボタンの設定
+            self.RecordingButton.setTitle("位置取得", for: .normal)
+            self.RecordingButton.tintColor = UIColor.systemBlue
             
-            recordingButton.tintColor = .green
-            saveButton.tintColor = .blue
-            resetButton.tintColor = .red
+            self.ResetButton.setTitle("リセット", for: .normal)
+            self.ResetButton.tintColor = UIColor.systemRed
+            
+            self.SaveBotton.setTitle("保存", for: .normal)
+            self.SaveBotton.tintColor = UIColor.systemBlue
         }
     }
 

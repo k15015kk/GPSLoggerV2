@@ -153,7 +153,6 @@
 		F91CEC1828309D580024F1CF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F91CEC1E2830A06D0024F1CF /* Common */,
 				F91CEC272830CA770024F1CF /* Recording.storyboard */,
 				F91CEC2D2830E6CE0024F1CF /* Setting.storyboard */,
 			);
@@ -182,13 +181,6 @@
 				F91CEC38283201F50024F1CF /* LocationHelper.swift */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		F91CEC1E2830A06D0024F1CF /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		F91CEC3328312CF10024F1CF /* Setting */ = {

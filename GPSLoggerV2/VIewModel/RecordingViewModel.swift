@@ -106,9 +106,9 @@ class RecordingViewModel {
         
         locationModel = LocationModel(attributes: attributes)
         
-        if locationModel != nil {
+        if let model = locationModel {
             // 変更通知を投げる
-            NotificationCenter.default.post(name: .updateLocationModel, object: nil, userInfo: ["model": self.locationModel])
+            NotificationCenter.default.post(name: .updateLocationModel, object: nil, userInfo: ["model": model])
         }
         
         // Realmに追加
