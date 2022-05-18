@@ -119,14 +119,6 @@ extension DistanceFilterTableViewController {
         
     }
     
-    func presentWarningAlert(_ title: String, _ message: String) {
-        // アラートを定義
-        let alert = Alert.presentWarningAlert(title, message)
-        
-        // アラートを表示
-        present(alert, animated: true, completion: nil)
-    }
-    
     func saveDistanceFilter(distance distanceFilter: String?) {
         
         guard let distanceFilter = distanceFilter else {

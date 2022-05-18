@@ -120,14 +120,6 @@ extension DesiredAccuracyTableViewController {
         
     }
     
-    func presentWarningAlert(_ title: String, _ message: String) {
-        // アラートを定義
-        let alert = Alert.presentWarningAlert(title, message)
-        
-        // アラートを表示
-        present(alert, animated: true, completion: nil)
-    }
-    
     func saveDesiredAccuracy(accuracy desiredAccuracy: String?) {
         
         guard let desiredAccuracy = desiredAccuracy else {

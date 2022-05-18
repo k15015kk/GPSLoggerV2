@@ -16,7 +16,7 @@
 		F91CEC35283152660024F1CF /* DesiredAccuracyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */; };
 		F91CEC3728315C170024F1CF /* ActivityTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3628315C170024F1CF /* ActivityTypeTableViewController.swift */; };
 		F91CEC39283201F50024F1CF /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC38283201F50024F1CF /* LocationHelper.swift */; };
-		F91CEC3B283212130024F1CF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3A283212130024F1CF /* Alert.swift */; };
+		F91CEC3B283212130024F1CF /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3A283212130024F1CF /* UIViewController+Alert.swift */; };
 		F91CEC3D283222870024F1CF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3C283222870024F1CF /* LocationModel.swift */; };
 		F91CEC3F283233A50024F1CF /* LocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC3E283233A50024F1CF /* LocationObject.swift */; };
 		F91CEC41283234460024F1CF /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91CEC40283234460024F1CF /* RecordingViewModel.swift */; };
@@ -61,7 +61,7 @@
 		F91CEC34283152660024F1CF /* DesiredAccuracyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesiredAccuracyTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC3628315C170024F1CF /* ActivityTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeTableViewController.swift; sourceTree = "<group>"; };
 		F91CEC38283201F50024F1CF /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
-		F91CEC3A283212130024F1CF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		F91CEC3A283212130024F1CF /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		F91CEC3C283222870024F1CF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		F91CEC3E283233A50024F1CF /* LocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationObject.swift; sourceTree = "<group>"; };
 		F91CEC40283234460024F1CF /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
@@ -162,6 +162,7 @@
 		F91CEC1928309D660024F1CF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F91CEC3A283212130024F1CF /* UIViewController+Alert.swift */,
 				F91CEC42283266930024F1CF /* NotificationName.swift */,
 			);
 			path = Extensions;
@@ -170,7 +171,6 @@
 		F91CEC1A28309D6C0024F1CF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				F91CEC3A283212130024F1CF /* Alert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -443,7 +443,7 @@
 				F91CEC3F283233A50024F1CF /* LocationObject.swift in Sources */,
 				F91CEC3728315C170024F1CF /* ActivityTypeTableViewController.swift in Sources */,
 				F958C50327C9EFB4009537BD /* SceneDelegate.swift in Sources */,
-				F91CEC3B283212130024F1CF /* Alert.swift in Sources */,
+				F91CEC3B283212130024F1CF /* UIViewController+Alert.swift in Sources */,
 				F91CEC39283201F50024F1CF /* LocationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

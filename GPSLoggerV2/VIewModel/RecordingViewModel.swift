@@ -115,8 +115,7 @@ class RecordingViewModel {
         writeRealmData()
         
         // DEBUG: Realmの書き込みを確認
-        let realm = try! Realm()
-        let result = realm.objects(LocationObject.self)
+        let result = fetchAllData()
         print("Realm Result = \(result)")
     }
     
@@ -149,6 +148,13 @@ class RecordingViewModel {
         try! realm.write {
             realm.add(LocationObject(value: object))
         }
+    }
+    
+    func fetchAllData() -> [LocationObject] {
+        let realm = try! Realm()
+        
+        let objects = realm.objects(LocationObject.self)
+        return Array(objects)
     }
     
     /// Realmのデータを全消去します

@@ -17,12 +17,17 @@ class RecordingViewController: UIViewController {
     @IBOutlet private weak var speedLabel: UILabel!
     @IBOutlet private weak var altitudeLabel: UILabel!
     
+    @IBOutlet private weak var MapView: MKMapView!
+    
     @IBOutlet private weak var RecordingButton: UIButton!
     @IBOutlet private weak var ResetButton: UIButton!
     @IBOutlet private weak var SaveBotton: UIButton!
     
     var viewModel: RecordingViewModel?
     var isLocationUpdate: Bool = false
+    
+    var prevLocation: CLLocationCoordinate2D? = nil
+    var pinCount: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +47,7 @@ class RecordingViewController: UIViewController {
         self.altitudeLabel.text = "0m"
         
         // ボタンの設定
-        self.RecordingButton.setTitle("位置取得", for: .normal)
+        self.RecordingButton.setTitle("取得開始", for: .normal)
         self.RecordingButton.tintColor = UIColor.systemBlue
         self.RecordingButton.isEnabled = true
         
@@ -54,6 +59,11 @@ class RecordingViewController: UIViewController {
         self.SaveBotton.tintColor = UIColor.systemBlue
         self.SaveBotton.isEnabled = true
         
+        // MapViewのdelegateを設定
+        MapView.delegate = self
+        
+        // MapKitの現在地表示を行う
+        MapView.userTrackingMode = MKUserTrackingMode.follow
         
         NotificationCenter.default.addObserver(
             self,
@@ -70,22 +80,18 @@ class RecordingViewController: UIViewController {
             switch authorization {
             case .denied:
                 // アラート設定
-                let alert = Alert.presentWarningAlert(
+                presentWarningAlert(
                     "位置情報の設定が無効になっています",
                     "設定画面から位置情報の取得を許可してください"
                 )
                 
-                // アラートを表示
-                present(alert, animated: true, completion: nil)
             case .restricted:
                 // アラート設定
-                let alert = Alert.presentWarningAlert(
+                presentWarningAlert(
                     "位置情報の設定が制限されています",
                     "ペアレンタルコントロールなどで位置情報の取得が制限されています"
                 )
                 
-                // アラートを表示
-                present(alert, animated: true, completion: nil)
             default:
                 break
             }
@@ -104,10 +110,33 @@ class RecordingViewController: UIViewController {
             
             speedLabel.text = String(Int(model.speed)) + "km/h"
             altitudeLabel.text = String(Int(model.altitude)) + "m"
+            
+            // 位置を定義
+            let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
+            pinCount = pinCount + 1
+            
+            //　ピンを追加
+            let annotation = MKPointAnnotation()
+            annotation.title = String(pinCount)
+            annotation.coordinate = coordinates
+            MapView.addAnnotation(annotation)
+            
+            // 直線の描画
+            if let prevLocation = prevLocation {
+                print("入りました")
+                let coordinatesList = [prevLocation, coordinates]
+                print(coordinatesList)
+                let polyLine = MKPolyline(coordinates: coordinatesList, count: coordinatesList.count)
+                MapView.addOverlay(polyLine)
+            }
+            
+            // 以前の位置情報をprevに保存
+            prevLocation = coordinates
         }
+        
     }
     
-    @IBAction func actionLocationUpdate(_ sender: Any) {
+    @IBAction private func actionLocationUpdate(_ sender: Any) {
         
         guard let vm = viewModel else {
             return
@@ -118,6 +147,7 @@ class RecordingViewController: UIViewController {
             isLocationUpdate = true
             
             // ボタンの設定
+            self.RecordingButton.setTitle("取得停止", for: .normal)
             self.RecordingButton.tintColor = UIColor.systemRed
             
             self.ResetButton.tintColor = UIColor.systemGray
@@ -131,6 +161,7 @@ class RecordingViewController: UIViewController {
             isLocationUpdate = false
             
             // ボタンの設定
+            self.RecordingButton.setTitle("取得開始", for: .normal)
             self.RecordingButton.tintColor = UIColor.systemBlue
             
             self.ResetButton.tintColor = UIColor.systemRed
@@ -141,4 +172,39 @@ class RecordingViewController: UIViewController {
         }
     }
 
+    
+    @IBAction private func actionLocationLogReset(_ sender: Any) {
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            guard let viewModel = self.viewModel else {
+                self.presentWarningAlert("リセットエラー", "位置情報ログがリセットできませんでした．")
+                return
+            }
+
+            // データを全削除
+            viewModel.allDeleteRealmData()
+            
+            // MapKitからレイヤーを消す
+            self.MapView.removeAnnotations(self.MapView.annotations)
+            self.MapView.removeOverlays(self.MapView.overlays)
+        }
+        
+        presentChoicesAlert("位置情報ログリセット", "位置情報のログをリセットしますか？", [okAction])
+    }
+}
+
+extension RecordingViewController: MKMapViewDelegate {
+    
+    // ラインの色を定義
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let polylineRender = MKPolylineRenderer(polyline: polyline)
+            
+            polylineRender.strokeColor = UIColor.systemRed
+            polylineRender.lineWidth = 2.0
+            return polylineRender
+        }
+        
+        return MKOverlayRenderer()
+    }
 }

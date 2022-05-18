@@ -102,6 +102,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="リセット">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="actionLocationLogReset:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="N2r-yM-i1E"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LW8-Up-lOK" userLabel="SaveButton">
                                 <rect key="frame" x="281.5" y="746.5" width="116.5" height="34.5"/>
@@ -137,6 +140,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="AltitudeView" destination="RCH-Qi-dLd" id="o70-IJ-4qi"/>
+                        <outlet property="MapView" destination="e20-Wm-jlY" id="glL-2w-dKH"/>
                         <outlet property="RecordingButton" destination="7ix-Ck-UPb" id="WgK-Vo-f4B"/>
                         <outlet property="ResetButton" destination="WGI-Db-FOe" id="LPK-Dc-dM8"/>
                         <outlet property="SaveBotton" destination="LW8-Up-lOK" id="24M-0u-7BG"/>
