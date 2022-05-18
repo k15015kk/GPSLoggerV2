@@ -123,8 +123,8 @@ class RecordingViewController: UIViewController {
             MapView.addAnnotation(annotation)
             
             // 誤差半径の描画
-            let circle = MKCircle(center: coordinates, radius: CLLocationDistance(model.horizontalAccuracy))
-            MapView.addOverlay(circle)
+//            let circle = MKCircle(center: coordinates, radius: CLLocationDistance(model.horizontalAccuracy))
+//            MapView.addOverlay(circle)
             
             // 直線の描画
             if let prevLocation = prevLocation {
