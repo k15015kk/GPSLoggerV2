@@ -27,7 +27,6 @@ class RecordingViewController: UIViewController {
     var isLocationUpdate: Bool = false
     
     var prevLocation: CLLocationCoordinate2D? = nil
-    var pinCount: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +115,10 @@ class RecordingViewController: UIViewController {
             
             // 位置を定義
             let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
-            pinCount = pinCount + 1
             
             //　ピンを追加
             let annotation = MKPointAnnotation()
-            annotation.title = String(pinCount)
+            annotation.title = model.timestamp
             annotation.coordinate = coordinates
             MapView.addAnnotation(annotation)
             
@@ -192,12 +190,22 @@ class RecordingViewController: UIViewController {
             // MapKitからレイヤーを消す
             self.MapView.removeAnnotations(self.MapView.annotations)
             self.MapView.removeOverlays(self.MapView.overlays)
-            
-            // prevCoordinatesをリセット
-            self.prevLocation = nil
         }
         
         presentChoicesAlert("位置情報ログリセット", "位置情報のログをリセットしますか？", [okAction])
+    }
+    
+    @IBAction private func actionSave(_ sender: Any) {
+        guard let viewModel = viewModel else {
+            self.presentWarningAlert("保存エラー", "csvファイルが保存できませんでした")
+            return
+        }
+
+        if viewModel.outputCsv() {
+            self.presentWarningAlert("CSV保存", "csvファイルを保存しました")
+        } else {
+            self.presentWarningAlert("保存エラー", "csvファイルが保存できませんでした")
+        }
     }
 }
 

@@ -24,6 +24,14 @@ class RecordingViewModel {
         }
     }
     
+    public var fileUrl: URL {
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let date = Date()
+        let dateFormat = ISO8601DateFormatter()
+        let dateString = dateFormat.string(from: date)
+        return dir.appendingPathComponent("GPSLogging_\(dateString).csv")
+    }
+    
     init() {
         locationModel = LocationModel()
         locationHelper = LocationHelper()
@@ -165,6 +173,30 @@ class RecordingViewModel {
             realm.deleteAll()
         }
     }
+    
+    // Realmのデータをcsvテキスト化します
+    func outputCsv() -> Bool {
+        let data = fetchAllData()
+        let body = data.map({[
+            String($0.latitude),
+            String($0.longitude),
+            String($0.altitude),
+            String($0.ellipsoidalAltitude),
+            String($0.floor),
+            String($0.horizontalAccuracy),
+            String($0.vericalAccuracy),
+            String($0.speed),
+            String($0.speedAccuracy),
+            String($0.course),
+            String($0.courseAccuracy),
+            $0.timestamp,
+            String($0.distanceFilter),
+            String($0.desiredAccuracy),
+            String($0.activityType)
+        ]})
+        
+        return createFile(logBody: body)
+    }
 }
 
 extension RecordingViewModel {
@@ -183,4 +215,74 @@ extension RecordingViewModel {
         
         helper.stopLocationUpdate()
     }
+    
+    func createFile(logBody: [[String]]) -> Bool {
+        let logHeader = [
+            "latitude",
+            "longitude",
+            "altitude",
+            "ellipsoidalAltitude",
+            "floor",
+            "horizontalAccuracy",
+            "vericalAccuracy",
+            "speed",
+            "speedAccuracy",
+            "course",
+            "courseAccuracy",
+            "timestamp",
+            "distanceFilter",
+            "desiredAccuracy",
+            "activityType"
+        ]
+        
+        let outputText :String = ArrayToCsvText(csvHeader: logHeader, csvBody: logBody)
+        
+        if FileManager.default.fileExists(atPath: fileUrl.path) {
+            // ファイルを書き込む
+            do {
+                try outputText.write(to: fileUrl, atomically: false, encoding: .utf8)
+                print("書き込み保存成功")
+                return true
+            } catch {
+                print("書き込み保存失敗")
+                return false
+            }
+        } else {
+            if FileManager.default.createFile(atPath: fileUrl.path, contents: outputText.data(using: .utf8), attributes: nil) {
+                print("書き込み新規成功")
+                return true
+            } else {
+                print("書き込み新規失敗")
+                return false
+            }
+        }
+    }
+    
+    func ArrayToCsvText(csvHeader: [String], csvBody: [[String]]) -> String {
+            var text :String = ""
+            
+            // ヘッダーをテキスト化
+            for (i, data) in csvHeader.enumerated() {
+                text += data
+                if i != csvHeader.count - 1 {
+                    text += ","
+                }
+            }
+            
+            text += "\n"
+            
+            // 本文をテキスト化
+            for csvArray in csvBody {
+                for (i,data) in csvArray.enumerated() {
+                    text += data
+                    if i != csvArray.count - 1 {
+                        text += ","
+                    }
+                }
+                
+                text += "\n"
+            }
+            
+            return text
+        }
 }

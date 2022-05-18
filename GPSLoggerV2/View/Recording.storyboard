@@ -112,6 +112,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="保存">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="actionSave:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YRI-Je-fZg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
