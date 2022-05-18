@@ -123,9 +123,7 @@ class RecordingViewController: UIViewController {
             
             // 直線の描画
             if let prevLocation = prevLocation {
-                print("入りました")
                 let coordinatesList = [prevLocation, coordinates]
-                print(coordinatesList)
                 let polyLine = MKPolyline(coordinates: coordinatesList, count: coordinatesList.count)
                 MapView.addOverlay(polyLine)
             }
@@ -187,6 +185,9 @@ class RecordingViewController: UIViewController {
             // MapKitからレイヤーを消す
             self.MapView.removeAnnotations(self.MapView.annotations)
             self.MapView.removeOverlays(self.MapView.overlays)
+            
+            // prevCoordinatesをリセット
+            self.prevLocation = nil
         }
         
         presentChoicesAlert("位置情報ログリセット", "位置情報のログをリセットしますか？", [okAction])
@@ -201,7 +202,7 @@ extension RecordingViewController: MKMapViewDelegate {
             let polylineRender = MKPolylineRenderer(polyline: polyline)
             
             polylineRender.strokeColor = UIColor.systemRed
-            polylineRender.lineWidth = 2.0
+            polylineRender.lineWidth = 3.0
             return polylineRender
         }
         
