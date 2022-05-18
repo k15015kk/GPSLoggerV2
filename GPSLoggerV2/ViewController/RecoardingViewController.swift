@@ -111,6 +111,9 @@ class RecordingViewController: UIViewController {
             speedLabel.text = String(Int(model.speed)) + "km/h"
             altitudeLabel.text = String(Int(model.altitude)) + "m"
             
+            // 再度，現在地表示を行う
+            MapView.userTrackingMode = MKUserTrackingMode.follow
+            
             // 位置を定義
             let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
             pinCount = pinCount + 1
@@ -120,6 +123,10 @@ class RecordingViewController: UIViewController {
             annotation.title = String(pinCount)
             annotation.coordinate = coordinates
             MapView.addAnnotation(annotation)
+            
+            // 誤差半径の描画
+            let circle = MKCircle(center: coordinates, radius: CLLocationDistance(model.horizontalAccuracy))
+            MapView.addOverlay(circle)
             
             // 直線の描画
             if let prevLocation = prevLocation {
@@ -204,6 +211,14 @@ extension RecordingViewController: MKMapViewDelegate {
             polylineRender.strokeColor = UIColor.systemRed
             polylineRender.lineWidth = 3.0
             return polylineRender
+        }
+        
+        if let circle = overlay as? MKCircle {
+            let circleRender = MKCircleRenderer(circle: circle)
+            
+            circleRender.fillColor = UIColor.systemRed
+            circleRender.alpha = 0.4
+            return circleRender
         }
         
         return MKOverlayRenderer()
