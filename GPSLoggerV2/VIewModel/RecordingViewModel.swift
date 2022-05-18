@@ -81,7 +81,12 @@ class RecordingViewModel {
         let timestampString = dateFormat.string(from: timestamp)
         
         // スピード
-        let speed: Double = location.speed
+        var speed: Double = 0.0
+        
+        if location.speed >= 0.0 {
+            speed = location.speed * 3.6
+        }
+        
         let speedAccuracy: Double = location.speedAccuracy
         
         // 方位
