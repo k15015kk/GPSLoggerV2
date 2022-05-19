@@ -85,7 +85,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-Ck-UPb" userLabel="RecordingBottom">
-                                <rect key="frame" x="16" y="746.5" width="116.5" height="34.5"/>
+                                <rect key="frame" x="16" y="746.5" width="122" height="34.5"/>
                                 <color key="tintColor" systemColor="tintColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="位置取得">
@@ -96,7 +96,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGI-Db-FOe" userLabel="ResetButtom">
-                                <rect key="frame" x="148.5" y="746.5" width="117" height="34.5"/>
+                                <rect key="frame" x="146" y="746.5" width="122" height="34.5"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="リセット">
@@ -107,7 +107,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LW8-Up-lOK" userLabel="SaveButton">
-                                <rect key="frame" x="281.5" y="746.5" width="116.5" height="34.5"/>
+                                <rect key="frame" x="276" y="746.5" width="122" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="保存">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
@@ -123,12 +123,12 @@
                             <constraint firstItem="WGI-Db-FOe" firstAttribute="width" secondItem="7ix-Ck-UPb" secondAttribute="width" id="5HN-gM-TKO"/>
                             <constraint firstItem="7ix-Ck-UPb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="6iR-gd-yPB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="e20-Wm-jlY" secondAttribute="trailing" id="K5E-cv-Luq"/>
-                            <constraint firstItem="WGI-Db-FOe" firstAttribute="leading" secondItem="7ix-Ck-UPb" secondAttribute="trailing" constant="16" id="Py5-oW-FSu"/>
+                            <constraint firstItem="WGI-Db-FOe" firstAttribute="leading" secondItem="7ix-Ck-UPb" secondAttribute="trailing" constant="8" id="Py5-oW-FSu"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="e20-Wm-jlY" secondAttribute="bottom" id="SvT-C7-ptr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7ix-Ck-UPb" secondAttribute="bottom" constant="32" id="Tl9-kZ-T0Q"/>
                             <constraint firstItem="e20-Wm-jlY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="YNz-yD-zbT"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LW8-Up-lOK" secondAttribute="trailing" constant="16" id="b7s-Ye-1f2"/>
-                            <constraint firstItem="LW8-Up-lOK" firstAttribute="leading" secondItem="WGI-Db-FOe" secondAttribute="trailing" constant="16" id="bFE-Pf-rFa"/>
+                            <constraint firstItem="LW8-Up-lOK" firstAttribute="leading" secondItem="WGI-Db-FOe" secondAttribute="trailing" constant="8" id="bFE-Pf-rFa"/>
                             <constraint firstItem="4Do-yR-ast" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="i5x-Sr-5On"/>
                             <constraint firstItem="RCH-Qi-dLd" firstAttribute="top" secondItem="4Do-yR-ast" secondAttribute="bottom" constant="4" id="l23-aS-uen"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="WGI-Db-FOe" secondAttribute="bottom" constant="32" id="lJi-Wb-Igd"/>
