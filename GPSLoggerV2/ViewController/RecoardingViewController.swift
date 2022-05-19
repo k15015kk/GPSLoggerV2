@@ -25,6 +25,7 @@ class RecordingViewController: UIViewController {
     
     var viewModel: RecordingViewModel?
     var isLocationUpdate: Bool = false
+    let userTrackingButtonSize: CGFloat = 32
     
     var prevLocation: CLLocationCoordinate2D? = nil
 
@@ -63,6 +64,17 @@ class RecordingViewController: UIViewController {
         
         // MapKitの現在地表示を行う
         MapView.userTrackingMode = MKUserTrackingMode.follow
+        
+        let userTrackingButton = MKUserTrackingButton(mapView: MapView)
+        userTrackingButton.layer.backgroundColor = UIColor(white: 1, alpha: 1).cgColor
+        userTrackingButton.layer.cornerRadius = 4
+        userTrackingButton.frame = CGRect(
+            x: 16,
+            y: AltitudeView.frame.maxY + 8,
+            width: userTrackingButtonSize,
+            height: userTrackingButtonSize
+        )
+        self.view.addSubview(userTrackingButton)
         
         NotificationCenter.default.addObserver(
             self,
@@ -109,9 +121,6 @@ class RecordingViewController: UIViewController {
             
             speedLabel.text = String(Int(model.speed)) + "km/h"
             altitudeLabel.text = String(Int(model.altitude)) + "m"
-            
-            // 再度，現在地表示を行う
-            MapView.userTrackingMode = MKUserTrackingMode.follow
             
             // 位置を定義
             let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
