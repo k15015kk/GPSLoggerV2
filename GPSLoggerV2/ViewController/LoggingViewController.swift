@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class RecordingViewController: UIViewController {
+class LoggingViewController: UIViewController {
     
     @IBOutlet private weak var SpeedView: UIView!
     @IBOutlet private weak var AltitudeView: UIView!
@@ -19,7 +19,7 @@ class RecordingViewController: UIViewController {
     
     @IBOutlet private weak var MapView: MKMapView!
     
-    @IBOutlet private weak var RecordingButton: UIButton!
+    @IBOutlet private weak var LoggingButton: UIButton!
     @IBOutlet private weak var ResetButton: UIButton!
     @IBOutlet private weak var SaveBotton: UIButton!
     
@@ -47,17 +47,7 @@ class RecordingViewController: UIViewController {
         self.altitudeLabel.text = "0m"
         
         // ボタンの設定
-        self.RecordingButton.setTitle("取得開始", for: .normal)
-        self.RecordingButton.tintColor = UIColor.systemBlue
-        self.RecordingButton.isEnabled = true
-        
-        self.ResetButton.setTitle("リセット", for: .normal)
-        self.ResetButton.tintColor = UIColor.systemRed
-        self.ResetButton.isEnabled = true
-        
-        self.SaveBotton.setTitle("保存", for: .normal)
-        self.SaveBotton.tintColor = UIColor.systemBlue
-        self.SaveBotton.isEnabled = true
+        changedButtonWhenStopLogging()
         
         // MapViewのdelegateを設定
         MapView.delegate = self
@@ -92,15 +82,15 @@ class RecordingViewController: UIViewController {
             case .denied:
                 // アラート設定
                 presentWarningAlert(
-                    "位置情報の設定が無効になっています",
-                    "設定画面から位置情報の取得を許可してください"
+                    "alert_title_invalid_location_setting".localized,
+                    "alert_message_invalid_location_setting".localized
                 )
                 
             case .restricted:
                 // アラート設定
                 presentWarningAlert(
-                    "位置情報の設定が制限されています",
-                    "ペアレンタルコントロールなどで位置情報の取得が制限されています"
+                    "alert_title_restricted_location_setting".localized,
+                    "alert_message_restricted_location_setting".localized
                 )
                 
             default:
@@ -111,14 +101,13 @@ class RecordingViewController: UIViewController {
     }
     
     @objc func updateLocationModel(notification: Notification) {
-        print("位置情報が更新されました")
         
         if let userInfo =  notification.userInfo?["model"]{
             
+            // モデルを定義
             let model = userInfo as! LocationModel
             
-            print("speed = \(model.speed)")
-            
+            // 画面ラベルを変更
             speedLabel.text = String(Int(model.speed)) + "km/h"
             altitudeLabel.text = String(Int(model.altitude)) + "m"
             
@@ -159,28 +148,14 @@ class RecordingViewController: UIViewController {
             isLocationUpdate = true
             
             // ボタンの設定
-            self.RecordingButton.setTitle("取得停止", for: .normal)
-            self.RecordingButton.tintColor = UIColor.systemRed
-            
-            self.ResetButton.tintColor = UIColor.systemGray
-            self.ResetButton.isEnabled = false
-            
-            self.SaveBotton.tintColor = UIColor.systemGray
-            self.SaveBotton.isEnabled = false
+            changedButtonWhenStartLogging()
             
         } else {
             vm.stopLocation()
             isLocationUpdate = false
             
             // ボタンの設定
-            self.RecordingButton.setTitle("取得開始", for: .normal)
-            self.RecordingButton.tintColor = UIColor.systemBlue
-            
-            self.ResetButton.tintColor = UIColor.systemRed
-            self.ResetButton.isEnabled = true
-            
-            self.SaveBotton.tintColor = UIColor.systemBlue
-            self.SaveBotton.isEnabled = true
+            changedButtonWhenStopLogging()
         }
     }
 
@@ -189,7 +164,7 @@ class RecordingViewController: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             
             guard let viewModel = self.viewModel else {
-                self.presentWarningAlert("リセットエラー", "位置情報ログがリセットできませんでした．")
+                self.presentWarningAlert("alert_title_reset_error".localized, "alert_message_reset_error".localized)
                 return
             }
 
@@ -201,24 +176,54 @@ class RecordingViewController: UIViewController {
             self.MapView.removeOverlays(self.MapView.overlays)
         }
         
-        presentChoicesAlert("位置情報ログリセット", "位置情報のログをリセットしますか？", [okAction])
+        presentChoicesAlert("alert_title_reset_confirm".localized, "alert_message_reset_confirm".localized, [okAction])
     }
     
     @IBAction private func actionSave(_ sender: Any) {
         guard let viewModel = viewModel else {
-            self.presentWarningAlert("保存エラー", "csvファイルが保存できませんでした")
+            self.presentWarningAlert("alert_title_save_error".localized, "alert_message_save_error".localized)
             return
         }
 
         if viewModel.outputCsv() {
-            self.presentWarningAlert("CSV保存", "csvファイルを保存しました")
+            self.presentWarningAlert("alert_title_save_success".localized, "alert_message_save_success".localized)
         } else {
-            self.presentWarningAlert("保存エラー", "csvファイルが保存できませんでした")
+            self.presentWarningAlert("alert_title_save_error".localized, "alert_message_save_error".localized)
         }
     }
 }
 
-extension RecordingViewController: MKMapViewDelegate {
+extension LoggingViewController {
+    private func changedButtonWhenStartLogging() {
+        self.LoggingButton.setTitle("button_title_logging_stop".localized, for: .normal)
+        self.LoggingButton.tintColor = UIColor.systemRed
+        self.LoggingButton.isEnabled = true
+        
+        self.ResetButton.setTitle("button_title_reset".localized, for: .normal)
+        self.ResetButton.tintColor = UIColor.systemGray
+        self.ResetButton.isEnabled = false
+        
+        self.SaveBotton.setTitle("button_title_save".localized, for: .normal)
+        self.SaveBotton.tintColor = UIColor.systemGray
+        self.SaveBotton.isEnabled = false
+    }
+    
+    private func changedButtonWhenStopLogging() {
+        self.LoggingButton.setTitle("button_title_logging_stop".localized, for: .normal)
+        self.LoggingButton.tintColor = UIColor.systemBlue
+        self.LoggingButton.isEnabled = true
+        
+        self.ResetButton.setTitle("button_title_reset".localized, for: .normal)
+        self.ResetButton.tintColor = UIColor.systemRed
+        self.ResetButton.isEnabled = true
+        
+        self.SaveBotton.setTitle("button_title_save".localized, for: .normal)
+        self.SaveBotton.tintColor = UIColor.systemBlue
+        self.SaveBotton.isEnabled = true
+    }
+}
+
+extension LoggingViewController: MKMapViewDelegate {
     
     // ラインの色を定義
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recording-->
+        <!--Logging-->
         <scene sceneID="503-kR-mWT">
             <objects>
-                <viewControllerPlaceholder storyboardName="Recording" id="OcN-Y7-St6" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Logging" id="OcN-Y7-St6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="emw-6H-dEt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1LF-jt-vMt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recording-->
+        <!--Logging-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="RecordingViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="LoggingViewController" customModule="GPSLoggerV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,7 +84,7 @@
                                     <constraint firstAttribute="bottom" secondItem="KbD-cx-Xhm" secondAttribute="bottom" constant="4" id="i1S-Yr-CpP"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-Ck-UPb" userLabel="RecordingBottom">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-Ck-UPb" userLabel="LoggingButton">
                                 <rect key="frame" x="16" y="746.5" width="122" height="34.5"/>
                                 <color key="tintColor" systemColor="tintColor"/>
                                 <state key="normal" title="Button"/>
@@ -139,12 +139,12 @@
                             <constraint firstItem="RCH-Qi-dLd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="wHS-tg-nxF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recording" image="record.circle" catalog="system" id="6iO-R3-zDT" userLabel="TabItem"/>
+                    <tabBarItem key="tabBarItem" title="Logging" image="record.circle" catalog="system" id="6iO-R3-zDT" userLabel="TabItem"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="AltitudeView" destination="RCH-Qi-dLd" id="o70-IJ-4qi"/>
+                        <outlet property="LoggingButton" destination="7ix-Ck-UPb" id="PDa-Kp-fHA"/>
                         <outlet property="MapView" destination="e20-Wm-jlY" id="glL-2w-dKH"/>
-                        <outlet property="RecordingButton" destination="7ix-Ck-UPb" id="WgK-Vo-f4B"/>
                         <outlet property="ResetButton" destination="WGI-Db-FOe" id="LPK-Dc-dM8"/>
                         <outlet property="SaveBotton" destination="LW8-Up-lOK" id="24M-0u-7BG"/>
                         <outlet property="SpeedView" destination="4Do-yR-ast" id="7Bx-7q-SMm"/>

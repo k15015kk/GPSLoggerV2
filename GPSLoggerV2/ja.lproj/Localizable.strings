@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  GPSLoggerV2
+
+  Created by 井上晴稀 on 2022/06/01.
+  
+*/
+
+// MARK: アラートメッセージ
+
+"alert_title_invalid_location_setting"      = "位置情報の設定が無効になっています";
+"alert_message_invalid_location_setting"    = "設定画面から位置情報の取得を許可してください";
+"alert_title_restricted_location_setting"   = "位置情報の設定が制限されています";
+"alert_message_restricted_location_setting" = "ペアレンタルコントロールなどで位置情報の取得が制限されています";
+"alert_title_reset_error"                   = "リセットエラー";
+"alert_message_reset_error"                 = "ロギングデータのリセットができませんでした";
+"alert_title_reset_confirm"                 = "ロギングデータのリセット";
+"alert_message_reset_confirm"               = "ロギングデータをリセットしますか？";
+"alert_title_save_error"                    = "csv保存エラー";
+"alert_message_save_error"                  = "csvファイルが保存できませんでした";
+"alert_title_save_success"                  = "csv保存";
+"alert_message_save_success"                = "csvファイルに保存しました\nアプリ「ファイル」 => 「GPSLoggerV2」にて確認できます";
+
+// MARK: UIテキスト
+
+"button_title_logging_start"    = "取得開始";
+"button_title_logging_stop"     = "取得停止";
+"button_title_reset"            = "リセット";
+"button_title_save"             = "保存";
