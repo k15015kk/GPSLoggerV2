@@ -11,25 +11,39 @@ import MapKit
 
 class LoggingViewController: UIViewController {
     
+    // MARK: UI
+    
+    // View
+    
     @IBOutlet private weak var SpeedView: UIView!
     @IBOutlet private weak var AltitudeView: UIView!
+    @IBOutlet private weak var MapView: MKMapView!
+    
+    // Label
     
     @IBOutlet private weak var speedLabel: UILabel!
     @IBOutlet private weak var altitudeLabel: UILabel!
     
-    @IBOutlet private weak var MapView: MKMapView!
+    // Button
     
     @IBOutlet private weak var LoggingButton: UIButton!
     @IBOutlet private weak var ResetButton: UIButton!
     @IBOutlet private weak var SaveBotton: UIButton!
     
+    // MARK: ViewModel
+    
     var viewModel: RecordingViewModel?
+    
+    // MARK: Properties
+    
     var isLocationUpdate: Bool = false
     let userTrackingButtonSize: CGFloat = 32
-    
     var prevLocation: CLLocationCoordinate2D? = nil
 
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // ViewModelを定義
@@ -46,7 +60,8 @@ class LoggingViewController: UIViewController {
         self.speedLabel.text = "0km/h"
         self.altitudeLabel.text = "0m"
         
-        // ボタンの設定
+        /// ボタンの初期設定
+        /// アプリ起動時はロギング終了時の制御変更を実行
         changedButtonWhenStopLogging()
         
         // MapViewのdelegateを設定
@@ -55,17 +70,26 @@ class LoggingViewController: UIViewController {
         // MapKitの現在地表示を行う
         MapView.userTrackingMode = MKUserTrackingMode.follow
         
+        // ユーザー追跡ボタンの定義
         let userTrackingButton = MKUserTrackingButton(mapView: MapView)
+        
+        /// そのままユーザー追跡ボタンを設置すると
+        /// 背景が無色透明になってしまうため
+        /// ユーザー追跡ボタンに白色の背景を定義します
         userTrackingButton.layer.backgroundColor = UIColor(white: 1, alpha: 1).cgColor
         userTrackingButton.layer.cornerRadius = 4
+        
         userTrackingButton.frame = CGRect(
             x: 16,
             y: AltitudeView.frame.maxY + 8,
             width: userTrackingButtonSize,
             height: userTrackingButtonSize
         )
+        
+        // ユーザー追跡ボタンをViewに設置
         self.view.addSubview(userTrackingButton)
         
+        // NotificationCenterのObserver定義
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateLocationModel),
@@ -100,8 +124,120 @@ class LoggingViewController: UIViewController {
         
     }
     
+    // MARK: Actions
+    
+    /// 位置取得・取得終了ボタンを押したときの処理
+    /// - Parameter sender: Sender情報
+    @IBAction private func actionLocationUpdate(_ sender: UIButton) {
+        
+        guard let vm = viewModel else {
+            return
+        }
+        
+        // ロギング中かどうか制御します
+        if isLocationUpdate {
+            
+            vm.stopLocation()
+            isLocationUpdate = false
+            
+            // ボタンの設定
+            changedButtonWhenStopLogging()
+            
+        } else {
+            
+            vm.startLocation()
+            isLocationUpdate = true
+            
+            // ボタンの設定
+            changedButtonWhenStartLogging()
+        }
+    }
+    
+    /// リセットボタンを押したときの処理
+    /// - Parameter sender: Sender情報
+    @IBAction private func actionLocationLogReset(_ sender: UIButton) {
+        
+        // アラートのOKを押した際の処理を定義
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            guard let viewModel = self.viewModel else {
+                self.presentWarningAlert("alert_title_reset_error".localized, "alert_message_reset_error".localized)
+                return
+            }
+
+            // データを全削除
+            viewModel.allDeleteRealmData()
+            
+            // MapKitからレイヤーを消す
+            self.MapView.removeAnnotations(self.MapView.annotations)
+            self.MapView.removeOverlays(self.MapView.overlays)
+        }
+        
+        // リセットして良いかアラートを出す
+        presentChoicesAlert("alert_title_reset_confirm".localized, "alert_message_reset_confirm".localized, [okAction])
+    }
+    
+    /// 保存ボタンを押したときの処理
+    /// - Parameter sender: Sender情報
+    @IBAction private func actionSave(_ sender: Any) {
+        
+        guard let viewModel = viewModel else {
+            self.presentWarningAlert("alert_title_save_error".localized, "alert_message_save_error".localized)
+            return
+        }
+
+        // CSVの保存が正常に終わった場合
+        if viewModel.outputCsv() {
+            
+            // CSVの保存ができたアラートを出す
+            self.presentWarningAlert("alert_title_save_success".localized, "alert_message_save_success".localized)
+            
+        } else {
+            
+            // CSVの保存ができなかったアラートをだす
+            self.presentWarningAlert("alert_title_save_error".localized, "alert_message_save_error".localized)
+        }
+    }
+}
+
+// MARK: - MKMapViewDelegate
+
+extension LoggingViewController: MKMapViewDelegate {
+    
+    // 地図上に表示する線・ポリゴンのスタイル設定
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        // ポリライン（線分データ）のスタイル
+        if let polyline = overlay as? MKPolyline {
+            let polylineRender = MKPolylineRenderer(polyline: polyline)
+            
+            polylineRender.strokeColor = UIColor.systemRed
+            polylineRender.lineWidth = 3.0
+            return polylineRender
+        }
+        
+        // 円のスタイル
+        if let circle = overlay as? MKCircle {
+            let circleRender = MKCircleRenderer(circle: circle)
+            
+            circleRender.fillColor = UIColor.systemRed
+            circleRender.alpha = 0.4
+            return circleRender
+        }
+        
+        return MKOverlayRenderer()
+    }
+}
+
+// MARK: - NotificationObserver
+
+extension LoggingViewController {
+    
+    /// 位置情報がアップデートされた通知を受信したときの処理
+    /// - Parameter notification: <#notification description#>
     @objc func updateLocationModel(notification: Notification) {
         
+        // modelのデータを取得
         if let userInfo =  notification.userInfo?["model"]{
             
             // モデルを定義
@@ -134,115 +270,49 @@ class LoggingViewController: UIViewController {
             // 以前の位置情報をprevに保存
             prevLocation = coordinates
         }
-        
-    }
-    
-    @IBAction private func actionLocationUpdate(_ sender: Any) {
-        
-        guard let vm = viewModel else {
-            return
-        }
-        
-        if !isLocationUpdate {
-            vm.startLocation()
-            isLocationUpdate = true
-            
-            // ボタンの設定
-            changedButtonWhenStartLogging()
-            
-        } else {
-            vm.stopLocation()
-            isLocationUpdate = false
-            
-            // ボタンの設定
-            changedButtonWhenStopLogging()
-        }
-    }
-
-    
-    @IBAction private func actionLocationLogReset(_ sender: Any) {
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            
-            guard let viewModel = self.viewModel else {
-                self.presentWarningAlert("alert_title_reset_error".localized, "alert_message_reset_error".localized)
-                return
-            }
-
-            // データを全削除
-            viewModel.allDeleteRealmData()
-            
-            // MapKitからレイヤーを消す
-            self.MapView.removeAnnotations(self.MapView.annotations)
-            self.MapView.removeOverlays(self.MapView.overlays)
-        }
-        
-        presentChoicesAlert("alert_title_reset_confirm".localized, "alert_message_reset_confirm".localized, [okAction])
-    }
-    
-    @IBAction private func actionSave(_ sender: Any) {
-        guard let viewModel = viewModel else {
-            self.presentWarningAlert("alert_title_save_error".localized, "alert_message_save_error".localized)
-            return
-        }
-
-        if viewModel.outputCsv() {
-            self.presentWarningAlert("alert_title_save_success".localized, "alert_message_save_success".localized)
-        } else {
-            self.presentWarningAlert("alert_title_save_error".localized, "alert_message_save_error".localized)
-        }
     }
 }
 
+// MARK: - Other
+
 extension LoggingViewController {
+    
+    /// ロギングを開始したときのボタン制御変更
     private func changedButtonWhenStartLogging() {
+        
+        // ロギングボタン 「取得開始」→「取得終了」
         self.LoggingButton.setTitle("button_title_logging_stop".localized, for: .normal)
         self.LoggingButton.tintColor = UIColor.systemRed
         self.LoggingButton.isEnabled = true
         
+        // リセットボタン 無効化
         self.ResetButton.setTitle("button_title_reset".localized, for: .normal)
         self.ResetButton.tintColor = UIColor.systemGray
         self.ResetButton.isEnabled = false
         
+        // 保存ボタン 無効化
         self.SaveBotton.setTitle("button_title_save".localized, for: .normal)
         self.SaveBotton.tintColor = UIColor.systemGray
         self.SaveBotton.isEnabled = false
     }
     
+    
+    /// ロギングを終了したときのボタン制御変更
     private func changedButtonWhenStopLogging() {
-        self.LoggingButton.setTitle("button_title_logging_stop".localized, for: .normal)
+        
+        // ロギングボタン　「取得終了」→「取得開始」
+        self.LoggingButton.setTitle("button_title_logging_start".localized, for: .normal)
         self.LoggingButton.tintColor = UIColor.systemBlue
         self.LoggingButton.isEnabled = true
         
+        // リセットボタン 有効化
         self.ResetButton.setTitle("button_title_reset".localized, for: .normal)
         self.ResetButton.tintColor = UIColor.systemRed
         self.ResetButton.isEnabled = true
         
+        // 保存ボタン 有効化
         self.SaveBotton.setTitle("button_title_save".localized, for: .normal)
         self.SaveBotton.tintColor = UIColor.systemBlue
         self.SaveBotton.isEnabled = true
-    }
-}
-
-extension LoggingViewController: MKMapViewDelegate {
-    
-    // ラインの色を定義
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let polyline = overlay as? MKPolyline {
-            let polylineRender = MKPolylineRenderer(polyline: polyline)
-            
-            polylineRender.strokeColor = UIColor.systemRed
-            polylineRender.lineWidth = 3.0
-            return polylineRender
-        }
-        
-        if let circle = overlay as? MKCircle {
-            let circleRender = MKCircleRenderer(circle: circle)
-            
-            circleRender.fillColor = UIColor.systemRed
-            circleRender.alpha = 0.4
-            return circleRender
-        }
-        
-        return MKOverlayRenderer()
     }
 }

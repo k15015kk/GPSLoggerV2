@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate  {
+class DesiredAccuracyTableViewController: UITableViewController {
     
     // MARK: UI
     
@@ -67,7 +67,7 @@ extension DesiredAccuracyTableViewController {
 
 // MARK: - TextFieldDelegate
 
-extension DesiredAccuracyTableViewController {
+extension DesiredAccuracyTableViewController: UITextFieldDelegate {
     
     /// キーボード内のエンターが呼ばれたときの処理
     /// - Parameter textField: テキストフィールドの情報
@@ -97,7 +97,7 @@ extension DesiredAccuracyTableViewController {
 
 // MARK: - UIGestureRecognizerDelegate
 
-extension DesiredAccuracyTableViewController {
+extension DesiredAccuracyTableViewController: UIGestureRecognizerDelegate {
     
     /// 画面内をタップしたときの処理
     /// - Parameter sender: sender

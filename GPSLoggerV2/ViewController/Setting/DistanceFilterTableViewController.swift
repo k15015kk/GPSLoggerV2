@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DistanceFilterTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class DistanceFilterTableViewController: UITableViewController {
     
     // MARK: UI
     
@@ -70,7 +70,7 @@ extension DistanceFilterTableViewController{
 
 // MARK: - TextFieldDelegate
 
-extension DistanceFilterTableViewController {
+extension DistanceFilterTableViewController: UITextFieldDelegate {
     
     /// キーボード内のエンターが呼ばれたときの処理
     /// - Parameter textField: テキストフィールドの情報
@@ -101,7 +101,7 @@ extension DistanceFilterTableViewController {
 
 // MARK: - UITapGestureRecognizer
 
-extension DistanceFilterTableViewController {
+extension DistanceFilterTableViewController: UIGestureRecognizerDelegate {
     
     /// 画面内をタップしたときの処理
     /// - Parameter sender: UITapGestureRecognizerのSender
