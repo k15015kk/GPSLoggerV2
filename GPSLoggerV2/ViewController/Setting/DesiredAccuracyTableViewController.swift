@@ -9,7 +9,11 @@ import UIKit
 
 class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate  {
     
+    // MARK: UI
+    
     @IBOutlet private weak var desiredAccuracyTextField: UITextField!
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +31,15 @@ class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDele
         // デリゲートをセット
         tapGesture.delegate = self
         
+        // タップジェスチャーを設定
         self.view.addGestureRecognizer(tapGesture)
         
     }
-    
-    // MARK: TableViewのデータソース
+}
+
+// MARK: - UITableViewController
+
+extension DesiredAccuracyTableViewController {
     
     /// TableView内のセクション数を返します
     /// - Parameter tableView: TableViewのオブジェクト
@@ -46,6 +54,7 @@ class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDele
     ///   - section: セクション情報（数値）
     /// - Returns: セクションごとのRow数
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         /// セクションごとのRowを返す
         switch section {
         case 0:
@@ -54,13 +63,17 @@ class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDele
             return 0
         }
     }
-    
-    // MARK: TextFieldDelegate
+}
+
+// MARK: - TextFieldDelegate
+
+extension DesiredAccuracyTableViewController {
     
     /// キーボード内のエンターが呼ばれたときの処理
     /// - Parameter textField: テキストフィールドの情報
     /// - Returns: 終了値
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         // キーボードを閉じる
         self.desiredAccuracyTextField.endEditing(true)
         return true
@@ -76,33 +89,43 @@ class DesiredAccuracyTableViewController: UITableViewController, UITextFieldDele
 
             // 入力値が小数の場合，値をUserDefaultに保存
             saveDesiredAccuracy(accuracy: textField.text)
-            
         }
         
         return true
     }
-    
-    // MARK: UITapGestureRecognizer
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension DesiredAccuracyTableViewController {
     
     /// 画面内をタップしたときの処理
     /// - Parameter sender: sender
     @objc func tapped(_ sender: UITapGestureRecognizer){
+        
         if sender.state == .ended {
             self.view.endEditing(true)
         }
     }
 }
 
+// MARK: - Ohters
 
 extension DesiredAccuracyTableViewController {
+    
+    /// 精度値が適切な値かどうかを判定する関数です
+    /// - Parameter desiredAccuracy: 入力した精度値
+    /// - Returns: 精度が適切な値かBool値で返します
     func checkFloatDesiredAccuracy(accuracy desiredAccuracy: String?) -> Bool {
         
         guard let desiredAccuracy = desiredAccuracy else {
             return false
         }
         
+        // 精度が小数値かどうか判定
         if let accuracy = Float(desiredAccuracy){
             
+            // 精度が０未満であればアラートを出す
             if accuracy < 0 {
                 
                 // 警告アラートを出す
@@ -112,7 +135,9 @@ extension DesiredAccuracyTableViewController {
             }
             
             return true
+            
         } else {
+            
             // 警告アラートを出す
             presentWarningAlert("入力値不正", "小数を入力してください")
             return false
@@ -120,16 +145,17 @@ extension DesiredAccuracyTableViewController {
         
     }
     
+    /// 精度値を設定します
+    /// - Parameter desiredAccuracy: 設定する精度値
     func saveDesiredAccuracy(accuracy desiredAccuracy: String?) {
         
         guard let desiredAccuracy = desiredAccuracy else {
             return
         }
         
-        let defaults = UserDefaults.standard
-        
         if let desiredAccuracyValue = Float(desiredAccuracy) {
-            defaults.set(desiredAccuracyValue, forKey: "desiredAccuracy")
+            
+            UserDefaults.standard.set(desiredAccuracyValue, forKey: "desiredAccuracy")
             desiredAccuracyTextField.text = String(desiredAccuracyValue)
         }
         

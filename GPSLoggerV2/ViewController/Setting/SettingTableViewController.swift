@@ -9,11 +9,15 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
+    // MARK: UI
+    
     @IBOutlet private weak var distanceFilterLabel: UILabel!
     @IBOutlet private weak var desiredAccuracyLabel: UILabel!
     @IBOutlet private weak var activityTypeLabel: UILabel!
     @IBOutlet private weak var backgroundFetchSwitch: UISwitch!
     @IBOutlet private weak var automaticallyUpdatePausesSwitch: UISwitch!
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +67,41 @@ class SettingTableViewController: UITableViewController {
         )
     }
     
-    // MARK: TableViewのデータソース
+    // MARK: Actions
+    
+    /// バックグランド取得のスイッチを選択したときの処理
+    /// - Parameter sender: UISwitchのSender情報
+    @IBAction private func actionSwitchBackgroundFetch(_ sender: UISwitch) {
+        
+        // バックグランド取得をUserDefaultsに設定
+        if sender.isOn {
+            
+            UserDefaults.standard.set(true, forKey: "backgroundLocationFetch")
+        } else {
+            
+            UserDefaults.standard.set(false, forKey: "backgroundLocationFetch")
+        }
+    }
+
+    /// バッテリー制御のスイッチを選択したときの処理
+    /// - Parameter sender: UISwitchのSender情報
+    @IBAction func actionSwitchLocationUpdatePauses(_ sender: UISwitch) {
+        
+        // バッテリー制御をUserDefaultsに設定
+        if sender.isOn {
+            
+            UserDefaults.standard.set(true, forKey: "automaticallyLocationUpdatePauses")
+        } else {
+            
+            UserDefaults.standard.set(false, forKey: "automaticallyLocationUpdatePauses")
+
+        }
+    }
+}
+
+// MARK: - UITableViewController
+
+extension SettingTableViewController {
     
     /// TableView内のセクション数を返します
     /// - Parameter tableView: TableViewのオブジェクト
@@ -90,17 +128,25 @@ class SettingTableViewController: UITableViewController {
             return 0
         }
     }
+}
+
+// MARK: - NotificationObserver
+
+extension SettingTableViewController {
     
     /// UserDefaultsが更新されたときに実行
     /// - Parameter notification: Notification情報
     @objc func userDefaultsDidChange(_ notification: Notification) {
-        // UserDefaultsの変更があったので画面の情報を更新する
+        
+        // 距離の更新
         let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
         distanceFilterLabel.text = String(distanceFilter)
         
+        // 精度の更新
         let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
         desiredAccuracyLabel.text = String(desiredAccuracy)
         
+        // アクティビティタイプの更新
         let activityType = UserDefaults.standard.integer(forKey: "activityType")
         
         switch activityType {
@@ -116,27 +162,6 @@ class SettingTableViewController: UITableViewController {
             activityTypeLabel.text = "その他"
         default:
             activityTypeLabel.text = "未設定"
-        }
-    }
-    
-    @IBAction private func actionSwitchBackgroundFetch(_ sender: UISwitch) {
-        if sender.isOn {
-            let defaults = UserDefaults.standard
-            defaults.set(true, forKey: "backgroundLocationFetch")
-        } else {
-            let defaults = UserDefaults.standard
-            defaults.set(false, forKey: "backgroundLocationFetch")
-
-        }
-    }
-    @IBAction func actionSwitchLocationUpdatePauses(_ sender: UISwitch) {
-        if sender.isOn {
-            let defaults = UserDefaults.standard
-            defaults.set(true, forKey: "automaticallyLocationUpdatePauses")
-        } else {
-            let defaults = UserDefaults.standard
-            defaults.set(false, forKey: "automaticallyLocationUpdatePauses")
-
         }
     }
 }

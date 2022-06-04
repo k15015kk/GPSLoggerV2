@@ -9,8 +9,12 @@ import UIKit
 
 class ActivityTypeTableViewController: UITableViewController {
     
+    // MARK: Properties
+    
     private var selectedRow: Int = 0
 
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -25,8 +29,11 @@ class ActivityTypeTableViewController: UITableViewController {
             selectedCell.accessoryType = .checkmark
         }
     }
+}
 
-    // MARK: TableViewのデータソース
+// MARK: - UITableViewController
+
+extension ActivityTypeTableViewController{
     
     /// TableView内のセクション数を返します
     /// - Parameter tableView: TableViewのオブジェクト
@@ -49,7 +56,11 @@ class ActivityTypeTableViewController: UITableViewController {
             return 0
         }
     }
-
+    
+    /// セルを選択したときの処理です
+    /// - Parameters:
+    ///   - tableView: TableViewのオブジェクト
+    ///   - indexPath: 選択したセルの情報
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
@@ -70,12 +81,16 @@ class ActivityTypeTableViewController: UITableViewController {
         saveActivityType(activity: indexPath.row)
         selectedRow = indexPath.row
     }
-
 }
 
+// MARK: - Others
+
 extension ActivityTypeTableViewController {
+    
+    /// 選択したアクティビティタイプをUserDefaultsに保存します
+    /// - Parameter activityType: 選択したアクティビティタイプ
     func saveActivityType(activity activityType: Int) {
-        let defaults = UserDefaults.standard
-        defaults.set(activityType, forKey: "activityType")
+        
+        UserDefaults.standard.set(activityType, forKey: "activityType")
     }
 }

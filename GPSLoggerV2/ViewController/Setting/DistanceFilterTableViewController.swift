@@ -9,13 +9,20 @@ import UIKit
 
 class DistanceFilterTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
+    // MARK: UI
+    
     @IBOutlet private weak var distanceFilterTextField: UITextField!
     
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        // テキストフィールドのデリゲートを設定
         distanceFilterTextField.delegate = self
         
-        // UserDefaultが保存されている場合，それを表示する
+        // UserDefaultが保存されている場合は，それを表示する
         let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
         distanceFilterTextField.text = String(distanceFilter)
         
@@ -24,14 +31,18 @@ class DistanceFilterTableViewController: UITableViewController, UITextFieldDeleg
             target: self,
             action: #selector(self.tapped(_:)))
         
-        // デリゲートをセット
+        // タップジェスチャーのデリゲートを設定
         tapGesture.delegate = self
         
+        // タップジェスチャーを設定
         self.view.addGestureRecognizer(tapGesture)
         
     }
-    
-    // MARK: TableViewのデータソース
+}
+
+// MARK: - UITableViewController
+
+extension DistanceFilterTableViewController{
     
     /// TableView内のセクション数を返します
     /// - Parameter tableView: TableViewのオブジェクト
@@ -54,13 +65,18 @@ class DistanceFilterTableViewController: UITableViewController, UITextFieldDeleg
             return 0
         }
     }
-    
-    // MARK: TextFieldDelegate
+
+}
+
+// MARK: - TextFieldDelegate
+
+extension DistanceFilterTableViewController {
     
     /// キーボード内のエンターが呼ばれたときの処理
     /// - Parameter textField: テキストフィールドの情報
     /// - Returns: 終了値
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         // キーボードを閉じる
         self.distanceFilterTextField.endEditing(true)
         return true
@@ -76,32 +92,44 @@ class DistanceFilterTableViewController: UITableViewController, UITextFieldDeleg
 
             // 入力値が小数の場合，値をUserDefaultに保存
             saveDistanceFilter(distance: textField.text)
-            
         }
         
         return true
     }
     
-    // MARK: UITapGestureRecognizer
+}
+
+// MARK: - UITapGestureRecognizer
+
+extension DistanceFilterTableViewController {
     
     /// 画面内をタップしたときの処理
-    /// - Parameter sender: sender
+    /// - Parameter sender: UITapGestureRecognizerのSender
     @objc func tapped(_ sender: UITapGestureRecognizer){
+        
         if sender.state == .ended {
             self.view.endEditing(true)
         }
     }
 }
 
+// MARK: - Others
+
 extension DistanceFilterTableViewController {
+    
+    /// 距離が適切な小数値か判定する関数です
+    /// - Parameter distanceFilter: 設定した距離値
+    /// - Returns: 適切な距離値かどうかBoolで返します
     func checkFloatDistanceFilter(distance distanceFilter: String?) -> Bool {
         
         guard let distanceFilter = distanceFilter else {
             return false
         }
         
+        // 距離が小数値かどうか判定
         if let distance = Float(distanceFilter){
             
+            // 距離が0未満の場合はアラートを出す
             if distance < 0 {
                 
                 // 警告アラートを出す
@@ -111,7 +139,9 @@ extension DistanceFilterTableViewController {
             }
             
             return true
+            
         } else {
+            
             // 警告アラートを出す
             presentWarningAlert("入力値不正", "小数を入力してください")
             return false
@@ -119,16 +149,17 @@ extension DistanceFilterTableViewController {
         
     }
     
+    /// 距離をUserDefaultに設定します
+    /// - Parameter distanceFilter: 最小取得距離
     func saveDistanceFilter(distance distanceFilter: String?) {
         
         guard let distanceFilter = distanceFilter else {
             return
         }
         
-        let defaults = UserDefaults.standard
-        
         if let distanceFilterValue = Float(distanceFilter) {
-            defaults.set(distanceFilterValue, forKey: "distanceFilter")
+            
+            UserDefaults.standard.set(distanceFilterValue, forKey: "distanceFilter")
             distanceFilterTextField.text = String(distanceFilterValue)
         }
         
