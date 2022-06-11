@@ -35,7 +35,7 @@ class RecordingViewModel {
         return dir.appendingPathComponent("GPSLogging_\(dateString).csv")
     }
     
-    // MARK: - Location Properties
+    // MARK: Location Properties
     
     // Locationの定義
     private var location : CLLocation = CLLocation(latitude: 0.0, longitude: 0.0)
@@ -133,7 +133,7 @@ class RecordingViewModel {
         UserDefaults.standard.integer(forKey: "activityType")
     }
     
-    // MARK: - Initialize
+    // MARK: Initialize
     
     init() {
         locationModel = LocationModel()

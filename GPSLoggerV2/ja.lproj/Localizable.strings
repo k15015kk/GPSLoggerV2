@@ -19,7 +19,11 @@
 "alert_title_save_error"                    = "csv保存エラー";
 "alert_message_save_error"                  = "csvファイルが保存できませんでした";
 "alert_title_save_success"                  = "csv保存";
-"alert_message_save_success"                = "csvファイルに保存しました\nアプリ「ファイル」 => 「GPSLoggerV2」にて確認できます";
+"alert_message_save_success"                = "csvファイルに保存しました\nアプリ「ファイル」内の 「GPSLoggerV2」に保存しました";
+"alert_title_incorrect_value"               = "入力値不正";
+"alert_message_incorrect_negative_number"   = "0以上の小数値を入力してください";
+"alert_message_incorrect_not_float"         = "小数値を入力してください";
+
 
 // MARK: UIテキスト
 

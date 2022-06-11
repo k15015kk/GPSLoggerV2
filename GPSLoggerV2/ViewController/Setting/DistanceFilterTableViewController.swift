@@ -13,6 +13,12 @@ class DistanceFilterTableViewController: UITableViewController {
     
     @IBOutlet private weak var distanceFilterTextField: UITextField!
     
+    // MARK: Properties
+    
+    private var distanceFilter : Float {
+        UserDefaults.standard.float(forKey: "distanceFilter")
+    }
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -23,7 +29,6 @@ class DistanceFilterTableViewController: UITableViewController {
         distanceFilterTextField.delegate = self
         
         // UserDefaultが保存されている場合は，それを表示する
-        let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
         distanceFilterTextField.text = String(distanceFilter)
         
         // UITapGestureRecognizerを定義
@@ -133,7 +138,11 @@ extension DistanceFilterTableViewController {
             if distance < 0 {
                 
                 // 警告アラートを出す
-                presentWarningAlert("入力値不正", "0以上の小数を入力してください")
+                presentWarningAlert(
+                    "alert_title_incorrect_value".localized,
+                    "alert_message_incorrect_negative_number".localized
+                )
+                
                 return false
                 
             }
@@ -143,7 +152,11 @@ extension DistanceFilterTableViewController {
         } else {
             
             // 警告アラートを出す
-            presentWarningAlert("入力値不正", "小数を入力してください")
+            presentWarningAlert(
+                "alert_title_incorrect_value".localized,
+                "alert_message_incorrect_not_float".localized
+            )
+            
             return false
         }
         
@@ -160,7 +173,7 @@ extension DistanceFilterTableViewController {
         if let distanceFilterValue = Float(distanceFilter) {
             
             UserDefaults.standard.set(distanceFilterValue, forKey: "distanceFilter")
-            distanceFilterTextField.text = String(distanceFilterValue)
+            distanceFilterTextField.text = String(self.distanceFilter)
         }
         
     }
