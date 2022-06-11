@@ -17,6 +17,51 @@ class SettingTableViewController: UITableViewController {
     @IBOutlet private weak var backgroundFetchSwitch: UISwitch!
     @IBOutlet private weak var automaticallyUpdatePausesSwitch: UISwitch!
     
+    // MARK: Properties
+    
+    // 距離フィルタ
+    private var distanceFilter: Float {
+        UserDefaults.standard.float(forKey: "distanceFilter")
+    }
+    
+    // 精度フィルタ
+    private var desiredAccuracy: Float {
+        UserDefaults.standard.float(forKey: "desiredAccuracy")
+    }
+    
+    // アクティビティタイプ
+    private var activityType: Int {
+        UserDefaults.standard.integer(forKey: "activityType")
+    }
+    
+    // アクティビティタイプのテキスト
+    private var activityTypeText: String {
+        switch activityType {
+        case 0:
+            return "activity_fitness".localized
+        case 1:
+            return "activity_automotive".localized
+        case 2:
+            return "activity_othermotive".localized
+        case 3:
+            return "activity_airborne".localized
+        case 4:
+            return "acitivty_other".localized
+        default:
+            return "acitivty_other".localized
+        }
+    }
+    
+    // バックグラウンド制御
+    private var backgroundFetch: Bool {
+        UserDefaults.standard.bool(forKey: "backgroundLocationFetch")
+    }
+    
+    // 位置情報の自動一時停止
+    private var automaticallyLocationUpdatePauses: Bool {
+        UserDefaults.standard.bool(forKey: "automaticallyLocationUpdatePauses")
+    }
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -24,39 +69,16 @@ class SettingTableViewController: UITableViewController {
         
         /// UserDefaultが保存されている場合，それを表示する
         
-        // 距離フィルタ
-        let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
+        // UIのラベルテキストを設定
         distanceFilterLabel.text = String(distanceFilter)
-        
-        // 精度フィルタ
-        let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
         desiredAccuracyLabel.text = String(desiredAccuracy)
-        
-        // アクティビティタイプ
-        let activityType = UserDefaults.standard.integer(forKey: "activityType")
-        
-        switch activityType {
-        case 0:
-            activityTypeLabel.text = "フィットネス"
-        case 1:
-            activityTypeLabel.text = "オートモーティブナビゲーション"
-        case 2:
-            activityTypeLabel.text = "その他の車両ナビゲーション"
-        case 3:
-            activityTypeLabel.text = "空中"
-        case 4:
-            activityTypeLabel.text = "その他"
-        default:
-            activityTypeLabel.text = "その他"
-        }
+        activityTypeLabel.text = activityTypeText
         
         // バックグラウンド制御
-        let backgroundFetch = UserDefaults.standard.bool(forKey: "backgroundLocationFetch")
         backgroundFetchSwitch.setOn(backgroundFetch, animated: false)
         
         // 位置情報の自動一時停止
-        let automaticallyPausesUpdate = UserDefaults.standard.bool(forKey: "automaticallyLocationUpdatePauses")
-        automaticallyUpdatePausesSwitch.setOn(automaticallyPausesUpdate, animated: false)
+        automaticallyUpdatePausesSwitch.setOn(automaticallyLocationUpdatePauses, animated: false)
         
         // UserDefaultsの更新通知
         NotificationCenter.default.addObserver(
@@ -139,29 +161,12 @@ extension SettingTableViewController {
     @objc func userDefaultsDidChange(_ notification: Notification) {
         
         // 距離の更新
-        let distanceFilter = UserDefaults.standard.float(forKey: "distanceFilter")
-        distanceFilterLabel.text = String(distanceFilter)
+        distanceFilterLabel.text = String(self.distanceFilter)
         
         // 精度の更新
-        let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
-        desiredAccuracyLabel.text = String(desiredAccuracy)
+        desiredAccuracyLabel.text = String(self.desiredAccuracy)
         
         // アクティビティタイプの更新
-        let activityType = UserDefaults.standard.integer(forKey: "activityType")
-        
-        switch activityType {
-        case 0:
-            activityTypeLabel.text = "フィットネス"
-        case 1:
-            activityTypeLabel.text = "オートモーティブナビゲーション"
-        case 2:
-            activityTypeLabel.text = "その他の車両ナビゲーション"
-        case 3:
-            activityTypeLabel.text = "空中"
-        case 4:
-            activityTypeLabel.text = "その他"
-        default:
-            activityTypeLabel.text = "未設定"
-        }
+        activityTypeLabel.text = self.activityTypeText
     }
 }

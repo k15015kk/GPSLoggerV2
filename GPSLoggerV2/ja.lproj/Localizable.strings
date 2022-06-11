@@ -31,3 +31,11 @@
 "button_title_logging_stop"     = "取得停止";
 "button_title_reset"            = "リセット";
 "button_title_save"             = "保存";
+
+// MARK: アクティビティタイプ
+
+"activity_fitness"     = "フィットネス";
+"activity_automotive"  = "オートモーティブ";
+"activity_othermotive" = "その他の車両ナビゲーション";
+"activity_airborne"    = "空中";
+"acitivty_other"       = "その他";
