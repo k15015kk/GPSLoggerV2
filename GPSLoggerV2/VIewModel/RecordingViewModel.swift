@@ -9,21 +9,24 @@ import UIKit
 import CoreLocation
 import RealmSwift
 
-enum ViewModelState {
-    case shouldUpdate
-    case didUpdate
-}
-
 class RecordingViewModel {
+    
+    // MARK: Properties
+    
+    // モデルの定義
     private var locationModel : LocationModel?
+    
+    // ロケーションの定義
     private var locationHelper: LocationHelper?
     
+    // ロケーションの許可状態
     var authorization: CLAuthorizationStatus? {
         get {
             return locationHelper?.locationManager?.authorizationStatus
         }
     }
     
+    // 保存ファイルのURL定義
     public var fileUrl: URL {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let date = Date()
@@ -31,6 +34,106 @@ class RecordingViewModel {
         let dateString = dateFormat.string(from: date)
         return dir.appendingPathComponent("GPSLogging_\(dateString).csv")
     }
+    
+    // MARK: - Location Properties
+    
+    // Locationの定義
+    private var location : CLLocation = CLLocation(latitude: 0.0, longitude: 0.0)
+    
+    // 緯度
+    private var latitude: Double {
+        location.coordinate.latitude
+    }
+    
+    // 軽度
+    private var longitude: Double {
+        location.coordinate.longitude
+    }
+    
+    // ジオロイド高
+    private var altitude: Double {
+        location.altitude
+    }
+    
+    // 楕円体標高(iOS15未満は0と返す)
+    private var ellipsoidalAltitude: Double {
+        if #available(iOS 15, *) {
+            return location.ellipsoidalAltitude
+        } else {
+            return 0.0
+        }
+    }
+    
+    // 階数
+    private var floor: Int {
+        guard let level = location.floor?.level else {
+            return 0
+        }
+        
+        return level
+    }
+    
+    // 水平精度
+    private var horizontalAccuracy: Double {
+        location.horizontalAccuracy
+    }
+    
+    // 垂直精度
+    private var vericalAccuracy: Double {
+        location.verticalAccuracy
+    }
+    
+    // タイムスタンプ
+    private var timestamp: String {
+        
+        let timestamp = location.timestamp
+        
+        // ISO8601形式に変更
+        return ISO8601DateFormatter().string(from: timestamp)
+    }
+    
+    // スピード
+    private var speed: Double {
+        let speed = location.speed
+        
+        if speed >= 0.0 {
+            return speed * 3.6
+        } else {
+            return speed
+        }
+    }
+    
+    // スピードの精度
+    private var speedAccuracy: Double {
+        location.speedAccuracy
+    }
+    
+    // 方位
+    private var course: Double {
+        location.course
+    }
+    
+    // 方位の精度
+    private var courseAccuracy: Double {
+        location.courseAccuracy
+    }
+    
+    // 距離フィルタ
+    private var distanceFilter: Double {
+        Double(UserDefaults.standard.float(forKey: "distanceFilter"))
+    }
+    
+    // 精度フィルタ
+    private var desiredAccuracy: Double {
+        Double(UserDefaults.standard.float(forKey: "desiredAccuracy"))
+    }
+    
+    // アクティビティタイプ
+    private var activityType: Int {
+        UserDefaults.standard.integer(forKey: "activityType")
+    }
+    
+    // MARK: - Initialize
     
     init() {
         locationModel = LocationModel()
@@ -43,60 +146,40 @@ class RecordingViewModel {
             object: nil
         )
     }
+}
+
+// MARK: - Location Helper
+
+extension RecordingViewModel {
     
+    /// 位置情報の取得を開始します
+    func startLocation() {
+        guard let helper = locationHelper else {
+            return
+        }
+        
+        helper.startLocationUpdate()
+    }
+    
+    /// 位置情報の取得を終了します
+    func stopLocation() {
+        guard let helper = locationHelper else {
+            return
+        }
+        
+        helper.stopLocationUpdate()
+    }
+    
+    /// 位置情報がアップデートされたときの処理
+    /// - Parameter notification: Notification情報
     @objc func updateLocation(_ notification: Notification) {
         
         guard let location = locationHelper?.newLocation else {
             return
         }
         
-        // CLLocationから各種データを取得
-        // 緯度経度
-        let latitude: Double = location.coordinate.latitude
-        let longitude: Double = location.coordinate.longitude
-        
-        // 標高
-        let altitude: Double = location.altitude
-        
-        var ellipsoidalAltitude: Double = 0.0
-        
-        if #available(iOS 15, *) {
-            ellipsoidalAltitude = location.ellipsoidalAltitude
-        }
-        
-        // フロア
-        var floor:Int = 0
-        
-        if let level = location.floor?.level {
-            floor = level
-        }
-        
-        // 位置情報精度
-        let horizontalAccuracy: Double = location.horizontalAccuracy
-        let vericalAccuracy: Double = location.verticalAccuracy
-        
-        // タイムスタンプ
-        let timestamp = location.timestamp
-        let dateFormat = ISO8601DateFormatter()
-        let timestampString = dateFormat.string(from: timestamp)
-        
-        // スピード
-        var speed: Double = 0.0
-        
-        if location.speed >= 0.0 {
-            speed = location.speed * 3.6
-        }
-        
-        let speedAccuracy: Double = location.speedAccuracy
-        
-        // 方位
-        let course: Double = location.course
-        let courseAccuracy: Double = location.courseAccuracy
-        
-        // 位置情報取得の設定値
-        let distanceFilter: Double =  Double(UserDefaults.standard.float(forKey: "distanceFilter"))
-        let desiredAccuracy: Double = Double(UserDefaults.standard.float(forKey: "desiredAccuracy"))
-        let activityType: Int = UserDefaults.standard.integer(forKey: "activityType")
+        // ロケーションを定義
+        self.location = location
         
         // attributesで定義して，モデルを初期化
         let attributes: [String: Any] = [
@@ -107,7 +190,7 @@ class RecordingViewModel {
             "floor": floor,
             "horizontalAccuracy": horizontalAccuracy,
             "vericalAccuracy": vericalAccuracy,
-            "timestamp": timestampString,
+            "timestamp": timestamp,
             "speed": speed,
             "speedAccuracy": speedAccuracy,
             "course": course,
@@ -131,7 +214,11 @@ class RecordingViewModel {
         let result = fetchAllData()
         print("Realm Result = \(result)")
     }
-    
+}
+
+// MARK: - Realm
+
+extension RecordingViewModel {
     
     /// Realmデータベースにデータを追加
     func writeRealmData() {
@@ -163,6 +250,8 @@ class RecordingViewModel {
         }
     }
     
+    /// Realmに保存されたデータを全て取得します
+    /// - Returns: LocationObjectの配列
     func fetchAllData() -> [LocationObject] {
         let realm = try! Realm()
         
@@ -178,8 +267,14 @@ class RecordingViewModel {
             realm.deleteAll()
         }
     }
+}
+
+// MARK: - File Output
+
+extension RecordingViewModel {
     
-    // Realmのデータをcsvテキスト化します
+    /// ロケーション情報をCSV出力します
+    /// - Returns: ファイル作成ができたかどうかをBool値で返します
     func outputCsv() -> Bool {
         let data = fetchAllData()
         let body = data.map({[
@@ -202,25 +297,10 @@ class RecordingViewModel {
         
         return createFile(logBody: body)
     }
-}
-
-extension RecordingViewModel {
-    func startLocation() {
-        guard let helper = locationHelper else {
-            return
-        }
-        
-        helper.startLocationUpdate()
-    }
     
-    func stopLocation() {
-        guard let helper = locationHelper else {
-            return
-        }
-        
-        helper.stopLocationUpdate()
-    }
-    
+    /// csvファイルを作成します
+    /// - Parameter logBody: csvのbody部分
+    /// - Returns: ファイル作成ができたかどうかをBool値で返します
     func createFile(logBody: [[String]]) -> Bool {
         let logHeader = [
             "latitude",
@@ -263,31 +343,39 @@ extension RecordingViewModel {
         }
     }
     
+    /// 配列をCSVのテキストに変換します
+    /// - Parameters:
+    ///   - csvHeader: csvのHeader部分
+    ///   - csvBody: csvのBody部分
+    /// - Returns: CSVの文字列を返します
     func ArrayToCsvText(csvHeader: [String], csvBody: [[String]]) -> String {
-            var text :String = ""
-            
-            // ヘッダーをテキスト化
-            for (i, data) in csvHeader.enumerated() {
+        
+        // テキストを初期化
+        var text :String = ""
+        
+        // ヘッダーをテキスト化
+        for (i, data) in csvHeader.enumerated() {
+            text += data
+            if i != csvHeader.count - 1 {
+                text += ","
+            }
+        }
+        
+        // 改行を挿入
+        text += "\n"
+        
+        // 本文をテキスト化
+        for csvArray in csvBody {
+            for (i,data) in csvArray.enumerated() {
                 text += data
-                if i != csvHeader.count - 1 {
+                if i != csvArray.count - 1 {
                     text += ","
                 }
             }
             
             text += "\n"
-            
-            // 本文をテキスト化
-            for csvArray in csvBody {
-                for (i,data) in csvArray.enumerated() {
-                    text += data
-                    if i != csvArray.count - 1 {
-                        text += ","
-                    }
-                }
-                
-                text += "\n"
-            }
-            
-            return text
         }
+        
+        return text
+    }
 }
