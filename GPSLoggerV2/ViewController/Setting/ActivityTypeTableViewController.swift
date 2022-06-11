@@ -12,6 +12,10 @@ class ActivityTypeTableViewController: UITableViewController {
     // MARK: Properties
     
     private var selectedRow: Int = 0
+    
+    private var activityType: Int {
+        UserDefaults.standard.integer(forKey: "activityType")
+    }
 
     // MARK: Lifecycle
     
@@ -22,10 +26,9 @@ class ActivityTypeTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let numActivity = UserDefaults.standard.integer(forKey: "activityType")
-        self.selectedRow = numActivity
+        self.selectedRow = activityType
         
-        if let selectedCell = tableView.cellForRow(at: IndexPath(row: numActivity, section: 0)) {
+        if let selectedCell = tableView.cellForRow(at: IndexPath(row: activityType, section: 0)) {
             selectedCell.accessoryType = .checkmark
         }
     }
@@ -79,7 +82,7 @@ extension ActivityTypeTableViewController{
         }
         
         saveActivityType(activity: indexPath.row)
-        selectedRow = indexPath.row
+        selectedRow = self.activityType
     }
 }
 
