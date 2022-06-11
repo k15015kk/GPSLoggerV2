@@ -13,6 +13,12 @@ class DesiredAccuracyTableViewController: UITableViewController {
     
     @IBOutlet private weak var desiredAccuracyTextField: UITextField!
     
+    // MARK: Properties
+    
+    private var desiredAccuracy : Float {
+        UserDefaults.standard.float(forKey: "desiredAccuracy")
+    }
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -20,7 +26,6 @@ class DesiredAccuracyTableViewController: UITableViewController {
         desiredAccuracyTextField.delegate = self
         
         // UserDefaultが保存されている場合，それを表示する
-        let desiredAccuracy = UserDefaults.standard.float(forKey: "desiredAccuracy")
         desiredAccuracyTextField.text = String(desiredAccuracy)
         
         // UITapGestureRecognizerを定義
@@ -129,7 +134,11 @@ extension DesiredAccuracyTableViewController {
             if accuracy < 0 {
                 
                 // 警告アラートを出す
-                presentWarningAlert("入力値不正", "0以上の小数を入力してください")
+                presentWarningAlert(
+                    "alert_title_incorrect_value".localized,
+                    "alert_message_incorrect_negative_number".localized
+                )
+                
                 return false
                 
             }
@@ -139,7 +148,11 @@ extension DesiredAccuracyTableViewController {
         } else {
             
             // 警告アラートを出す
-            presentWarningAlert("入力値不正", "小数を入力してください")
+            presentWarningAlert(
+                "alert_title_incorrect_value".localized,
+                "alert_message_incorrect_not_float".localized
+            )
+            
             return false
         }
         
@@ -156,7 +169,7 @@ extension DesiredAccuracyTableViewController {
         if let desiredAccuracyValue = Float(desiredAccuracy) {
             
             UserDefaults.standard.set(desiredAccuracyValue, forKey: "desiredAccuracy")
-            desiredAccuracyTextField.text = String(desiredAccuracyValue)
+            desiredAccuracyTextField.text = String(self.desiredAccuracy)
         }
         
     }
