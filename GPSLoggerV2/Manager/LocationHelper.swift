@@ -7,18 +7,46 @@
 
 import CoreLocation
 
-class LocationHelper: NSObject, CLLocationManagerDelegate {
+class LocationHelper: NSObject {
+    
+    // MARK: Properties
+    
+    // ロケーションマネジャー
     var locationManager: CLLocationManager?
-    var newLocation: CLLocation?
+    
+    // 精度フィルタ
+    private var distanceFilter: Float {
+        UserDefaults.standard.float(forKey: "distanceFilter")
+    }
+    
+    // 精度フィルタ
+    private var desiredAccuracy: Float {
+        UserDefaults.standard.float(forKey: "desiredAccuracy")
+    }
+    
+    // アクティビティタイプ
+    private var activityType: Int {
+        UserDefaults.standard.integer(forKey: "activityType")
+    }
+    
+    // バックグラウンド取得
+    private var isBackgroundLocationFetch: Bool {
+        UserDefaults.standard.bool(forKey: "backgroundLocationFetch")
+    }
+    
+    // 取得の自動一時停止の設定
+    private var isAutomaticallyPausesUpdate: Bool {
+        UserDefaults.standard.bool(forKey: "automaticallyLocationUpdatePauses")
+    }
     
     override init() {
         super.init()
         
         // LocationManagerの定義
         locationManager = CLLocationManager()
-        locationManager!.delegate = self
         
-        self.newLocation = CLLocation()
+        // LocationManagerのデリゲート設定
+        locationManager!.delegate = self
         
         // 各種設定値の設定
         self.settingLocationManager()
@@ -34,27 +62,11 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
             object: nil
         )
     }
-    
-    func startLocationUpdate() {
-        
-        guard let manager = locationManager else {
-            return
-        }
-        
-        // 位置情報の取得を開始
-        manager.startUpdatingLocation()
-    }
-    
-    func stopLocationUpdate() {
-        
-        guard let manager = locationManager else {
-            return
-        }
-        
-        // 位置情報の取得を終了
-        manager.stopUpdatingLocation()
-        
-    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension LocationHelper: CLLocationManagerDelegate  {
     
     // 位置情報が更新された場合の処理
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -66,10 +78,8 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
         
         print("newLocation = \(newLocation)")
         
-        self.newLocation = newLocation
-        
         // 変更通知を投げる
-        NotificationCenter.default.post(name: .updateLocation, object: nil)
+        NotificationCenter.default.post(name: .updateLocation, object: nil, userInfo: ["newLocation": newLocation])
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -92,7 +102,32 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
     }
 }
 
+// MARK: - Location Functions
+
 extension LocationHelper {
+    
+    /// 位置情報の取得を開始
+    func startLocationUpdate() {
+        
+        guard let manager = locationManager else {
+            return
+        }
+        
+        // 位置情報の取得を開始
+        manager.startUpdatingLocation()
+    }
+    
+    /// 位置情報の取得を終了
+    func stopLocationUpdate() {
+        
+        guard let manager = locationManager else {
+            return
+        }
+        
+        // 位置情報の取得を終了
+        manager.stopUpdatingLocation()
+        
+    }
     
     /// UserDefaultsが更新されたときに実行
     /// - Parameter notification: Notification情報
@@ -100,23 +135,20 @@ extension LocationHelper {
         self.settingLocationManager()
     }
     
+    /// ロケーションマネジャーの設定を行う処理
     func settingLocationManager()  {
         guard let manager = locationManager else {
             return
         }
         
         // 距離フィルタの設定
-        let distanceFilterValue = UserDefaults.standard.float(forKey: "distanceFilter")
-        manager.distanceFilter = CLLocationDistance(distanceFilterValue)
+        manager.distanceFilter = CLLocationDistance(distanceFilter)
         
         // 精度フィルタの設定
-        let desiredAccuracyValue = UserDefaults.standard.float(forKey: "desiredAccuracy")
-        manager.desiredAccuracy = CLLocationAccuracy(desiredAccuracyValue)
+        manager.desiredAccuracy = CLLocationAccuracy(desiredAccuracy)
         
         // アクティビティタイプの設定
-        let activityTypeValue = UserDefaults.standard.integer(forKey: "activityType")
-        
-        switch activityTypeValue {
+        switch activityType {
         case 0:
             manager.activityType = .fitness
         case 1:
@@ -132,12 +164,10 @@ extension LocationHelper {
         }
         
         // バックグラウンドの取得設定
-        let isBackgroundLocationFetch = UserDefaults.standard.bool(forKey: "backgroundLocationFetch")
         manager.allowsBackgroundLocationUpdates = isBackgroundLocationFetch
         manager.showsBackgroundLocationIndicator = isBackgroundLocationFetch
         
         // 取得の自動一時停止の設定
-        let isAutomaticallyPausesUpdate = UserDefaults.standard.bool(forKey: "automaticallyLocationUpdatePauses")
         manager.pausesLocationUpdatesAutomatically = isAutomaticallyPausesUpdate
     }
 }

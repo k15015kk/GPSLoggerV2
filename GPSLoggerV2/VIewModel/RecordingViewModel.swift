@@ -174,7 +174,7 @@ extension RecordingViewModel {
     /// - Parameter notification: Notification情報
     @objc func updateLocation(_ notification: Notification) {
         
-        guard let location = locationHelper?.newLocation else {
+        guard let location = notification.userInfo?["newLocation"] as? CLLocation else {
             return
         }
         
