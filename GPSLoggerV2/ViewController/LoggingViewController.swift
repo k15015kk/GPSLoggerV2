@@ -251,10 +251,10 @@ extension LoggingViewController {
             let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
             
             //　ピンを追加
-            let annotation = MKPointAnnotation()
-            annotation.title = model.timestamp
-            annotation.coordinate = coordinates
-            MapView.addAnnotation(annotation)
+//            let annotation = MKPointAnnotation()
+//            annotation.title = model.timestamp
+//            annotation.coordinate = coordinates
+//            MapView.addAnnotation(annotation)
             
             // 誤差半径の描画
 //            let circle = MKCircle(center: coordinates, radius: CLLocationDistance(model.horizontalAccuracy))
