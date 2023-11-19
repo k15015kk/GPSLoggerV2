@@ -70,6 +70,16 @@ class LoggingViewController: UIViewController {
         // MapKitの現在地表示を行う
         MapView.userTrackingMode = MKUserTrackingMode.follow
         
+        // NotificationCenterのObserver定義
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateLocationModel),
+            name: .updateLocationModel,
+            object: nil
+        )
+    }
+    
+    override func viewDidLayoutSubviews() {
         // ユーザー追跡ボタンの定義
         let userTrackingButton = MKUserTrackingButton(mapView: MapView)
         
@@ -80,22 +90,14 @@ class LoggingViewController: UIViewController {
         userTrackingButton.layer.cornerRadius = 4
         
         userTrackingButton.frame = CGRect(
-            x: 16,
-            y: AltitudeView.frame.maxY + 8,
+            x: self.view.frame.width - userTrackingButtonSize - 16,
+            y: self.view.safeAreaInsets.top + 8,
             width: userTrackingButtonSize,
             height: userTrackingButtonSize
         )
         
         // ユーザー追跡ボタンをViewに設置
         self.view.addSubview(userTrackingButton)
-        
-        // NotificationCenterのObserver定義
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateLocationModel),
-            name: .updateLocationModel,
-            object: nil
-        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
